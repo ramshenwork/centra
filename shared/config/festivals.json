@@ -1,0 +1,6 @@
+{
+ "_note": "Festivals whose date changes every year. Owners pick a festival in 'Business closures'; the date for each year comes from here. VERIFY these dates and add new years before they are needed. A festival with no date for a year is treated as open, and the dashboard shows a warning.",
+ "festivals": {
+  "diwali": {"label": "Diwali", "dates": {"2026": "2026-11-08", "2027": "2027-10-29", "2028": "2028-10-17"}}
+ }
+}

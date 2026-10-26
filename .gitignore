@@ -1,0 +1,8 @@
+shared/config/.env
+shared/data/*.db*
+shared/data/dev-outbox/
+shared/data/uploads/logos/*.png
+shared/logs/app/*.log*
+releases/*/venv/
+__pycache__/
+.pytest_cache/

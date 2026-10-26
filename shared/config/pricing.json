@@ -1,0 +1,10 @@
+{
+ "_note": "Plan prices in RUPEES. Edit and restart the app to change them. 'pack' = 6 months. First-time Top users get the free months below added on top.",
+ "currency": "INR",
+ "offer_label": "30% off · starting offer",
+ "plans": {
+  "Base": {"monthly": {"amount": 479, "months": 1}, "pack": {"amount": 1689, "months": 6}},
+  "Top":  {"monthly": {"amount": 889, "months": 1}, "pack": {"amount": 2169, "months": 6}}
+ },
+ "first_time_top_free_months": {"monthly": 1, "pack": 1}
+}

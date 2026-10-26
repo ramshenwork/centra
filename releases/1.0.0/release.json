@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "product": "CENTRA",
+  "schema_version": 1,
+  "notes": [
+    "First release: sign-in, sign-up wizard, Base dashboard, customer booking, deposits, Razorpay billing.",
+    "Top (WhatsApp receptionist), phone OTP and Razorpay Route are parked; Route is behind ROUTE_ENABLED.",
+    "Database tables are created on first start (no migration tool in this release)."
+  ]
+}

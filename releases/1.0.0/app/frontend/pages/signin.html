@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CENTRA — Sign in</title>
+<link rel="stylesheet" href="/static/styles/centra-auth.css">
+<style>
+  .auth{width:min(100%,440px);margin:0 auto}
+  .small-links{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;margin-top:14px;color:var(--muted)}
+  .small-links a{color:var(--olive)}
+  .attempts{font-size:12.5px;color:var(--danger);margin-top:6px;min-height:1em}
+  .locked{background:#f6e7e2;border:1px solid #e3c2b8;color:#7d3427;border-radius:12px;padding:12px 14px;font-size:13.5px;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <span></span>
+    <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>CENTRA</span></div>
+    <span></span>
+  </header>
+  <section class="intro">
+    <h1>Sign in</h1>
+    <p>Manage your bookings, services and team.</p>
+  </section>
+  <main class="card auth">
+    <form id="signinForm" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" required placeholder="you@business.com">
+      </div>
+      <div class="field" style="margin-top:12px">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input id="password" type="password" autocomplete="current-password" required placeholder="Your password">
+          <button class="toggle" type="button" id="togglePw">Show</button>
+        </div>
+      </div>
+      <div id="attempts" class="attempts" aria-live="polite"></div>
+      <div id="error" class="status error" aria-live="polite"></div>
+      <div id="locked" class="locked" hidden></div>
+      <button class="btn primary grow" style="width:100%;margin-top:14px" id="submitBtn">Sign in</button>
+      <div class="small-links">
+        <a href="/forgot-password">Forgot password?</a>
+        <span>New here? <a href="/signup">Sign up</a></span>
+      </div>
+    </form>
+  </main>
+  <p class="footer-note">A calmer way to run your business · CENTRA</p>
+</div>
+<script src="/static/scripts/api.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+$("togglePw").onclick = () => {
+  const p = $("password"); p.type = p.type === "password" ? "text" : "password";
+  $("togglePw").textContent = p.type === "password" ? "Show" : "Hide";
+};
+$("signinForm").onsubmit = async (e) => {
+  e.preventDefault();
+  $("error").textContent = ""; $("attempts").textContent = ""; $("locked").hidden = true;
+  const email = $("email").value.trim(), password = $("password").value;
+  if (!email || !password) { $("error").textContent = "Enter your email and password."; return; }
+  $("submitBtn").disabled = true; $("submitBtn").textContent = "Signing in…";
+  try {
+    const r = await Centra.post("/api/auth/signin", { email, password });
+    window.location.href = r.redirect || "/dashboard";
+    return;
+  } catch (err) {
+    if (err.code === "account_locked") { $("locked").textContent = err.message; $("locked").hidden = false; }
+    else {
+      $("error").textContent = err.code === "bad_credentials" ? "Email or password is incorrect." : err.message;
+      if (err.extra && err.extra.attempts_left) {
+        const n = err.extra.attempts_left;
+        $("attempts").textContent = n + (n === 1 ? " attempt left" : " attempts left") + " before your account is locked.";
+      }
+    }
+  }
+  $("submitBtn").disabled = false; $("submitBtn").textContent = "Sign in";
+};
+</script>
+</body>
+</html>

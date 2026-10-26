@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CENTRA — Reset password</title>
+<link rel="stylesheet" href="/static/styles/centra-auth.css">
+<style>.auth{width:min(100%,440px);margin:0 auto}.ok{background:#e9efe1;border:1px solid #c9d6b8;color:#3d5230;border-radius:12px;padding:12px 14px;font-size:13.5px}</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <a class="quiet" href="/">← Sign in</a>
+    <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>CENTRA</span></div>
+    <span></span>
+  </header>
+  <section class="intro">
+    <h1>Reset your password</h1>
+    <p>We'll email you a 6-digit code.</p>
+  </section>
+  <main class="card auth" id="card">
+    <form id="step1" novalidate>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
+      <div id="err1" class="status error" aria-live="polite"></div>
+      <button class="btn primary grow" style="width:100%;margin-top:14px" id="send">Email me a code</button>
+    </form>
+    <form id="step2" novalidate hidden>
+      <p class="subhead" id="sentTo"></p>
+      <div class="field"><label for="code">6-digit code</label><input id="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required></div>
+      <div class="field" style="margin-top:12px"><label for="pw">New password</label><input id="pw" type="password" autocomplete="new-password" required></div>
+      <div class="field" style="margin-top:12px"><label for="pw2">Confirm new password</label><input id="pw2" type="password" autocomplete="new-password" required>
+        <small>At least 8 characters, with letters, numbers and one special character.</small></div>
+      <div id="err2" class="status error" aria-live="polite"></div>
+      <button class="btn primary grow" style="width:100%;margin-top:14px" id="reset">Change password</button>
+      <p class="hint center">Didn't get it? <button class="text-button" type="button" id="resend">Send a new code</button></p>
+    </form>
+    <div id="done" hidden><p class="ok" id="doneMsg"></p><a class="btn primary grow" style="display:block;text-align:center;margin-top:14px;text-decoration:none" href="/">Go to sign in</a></div>
+  </main>
+</div>
+<script src="/static/scripts/api.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+let email = "";
+async function send(errBox) {
+  try { await Centra.post("/api/auth/forgot/request", { email }); return true; }
+  catch (e) { $(errBox).textContent = e.message; return false; }
+}
+$("step1").onsubmit = async (e) => {
+  e.preventDefault(); $("err1").textContent = "";
+  email = $("email").value.trim();
+  if (!email) { $("err1").textContent = "Enter your email."; return; }
+  $("send").disabled = true;
+  if (await send("err1")) {
+    $("step1").hidden = true; $("step2").hidden = false;
+    $("sentTo").textContent = "We sent a code to " + email + ". It expires in 10 minutes.";
+    $("code").focus();
+  }
+  $("send").disabled = false;
+};
+$("resend").onclick = async () => { $("err2").textContent = ""; if (await send("err2")) $("err2").textContent = "A new code is on its way."; };
+$("step2").onsubmit = async (e) => {
+  e.preventDefault(); $("err2").textContent = "";
+  $("reset").disabled = true;
+  try {
+    const r = await Centra.post("/api/auth/forgot/reset", { email, code: $("code").value.trim(), password: $("pw").value, confirm: $("pw2").value });
+    $("step2").hidden = true; $("done").hidden = false; $("doneMsg").textContent = r.message;
+  } catch (err) { $("err2").textContent = err.message; }
+  $("reset").disabled = false;
+};
+</script>
+</body>
+</html>

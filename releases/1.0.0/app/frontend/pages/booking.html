@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123d35">
+<title>Book an appointment | CENTRA</title>
+<style>
+:root{--ink:#18332e;--muted:#71817b;--line:#e2e9e5;--paper:#f5f8f6;--white:#fff;--green:#246b56;--green2:#dceee5;--gold:#c89b54;--danger:#a43c3c;--shadow:0 14px 40px #173a2d0c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:var(--green)}.shell{max-width:1040px;margin:auto;padding:20px 18px 50px}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.brand{display:flex;gap:11px;align-items:center}.logo{height:46px;width:46px;border-radius:14px;background:#123d35;color:white;display:grid;place-items:center;font-weight:800;font-size:18px;letter-spacing:-1px}.brand h1{font-size:16px;line-height:1.15;margin:0}.brand small{display:block;color:var(--muted);font-size:12px;margin-top:4px}.secure{font-size:12px;color:var(--muted);display:flex;gap:6px;align-items:center}.secure:before{content:"";width:7px;height:7px;background:#54a67d;border-radius:50%}.layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:22px;align-items:start}.main,.summary,.business-card{background:var(--white);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}.main{overflow:hidden}.hero{padding:26px 26px 22px;border-bottom:1px solid var(--line);background:linear-gradient(125deg,#fff,#f2f8f4)}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--green);font-weight:800}.hero h2{font-size:28px;line-height:1.16;letter-spacing:-.8px;margin:8px 0}.hero p{margin:0;color:var(--muted);max-width:560px}.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;padding:18px 24px 0}.step{display:flex;align-items:center;gap:7px;color:#9aa7a0;font-size:11px;font-weight:700}.step .num{width:25px;height:25px;border:1px solid #d9e3dd;border-radius:50%;display:grid;place-items:center;font-size:11px;flex-shrink:0}.step.active{color:var(--green)}.step.active .num{background:var(--green);color:white;border-color:var(--green)}.step.done .num{background:var(--green2);border-color:var(--green2);color:var(--green)}.content{padding:24px}.page{display:none}.page.active{display:block}.section-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:18px}.section-head h3{margin:0;font-size:20px;letter-spacing:-.4px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.pill{border-radius:999px;background:#eef5f0;color:var(--green);padding:5px 10px;font-size:11px;font-weight:800;white-space:nowrap}.services{display:grid;gap:10px}.service{border:1px solid var(--line);border-radius:15px;padding:15px;display:flex;gap:12px;align-items:center;transition:.15s}.service.selected{border-color:var(--green);background:#f5faf7;box-shadow:0 0 0 1px var(--green) inset}.check{width:21px;height:21px;border:1.5px solid #c9d5ce;border-radius:6px;display:grid;place-items:center;flex-shrink:0;color:white}.service.selected .check{background:var(--green);border-color:var(--green)}.service.selected .check:after{content:"✓";font-size:13px;font-weight:800}.service-info{flex:1;min-width:0}.service-info strong{display:block;font-size:14px}.service-info small{color:var(--muted);font-size:12px}.price{text-align:right;font-weight:750;white-space:nowrap}.price small{display:block;font-size:11px;color:var(--muted);font-weight:500}.note{background:#f4f7f5;border-radius:12px;padding:12px 13px;font-size:12px;color:var(--muted);margin-top:15px}.field{margin-bottom:15px}.field label{display:block;font-size:12px;font-weight:750;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid #dce5df;background:#fff;border-radius:11px;padding:12px 13px;outline:none;color:var(--ink)}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #246b5612}.field textarea{resize:vertical;min-height:82px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.staff-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.staff{border:1px solid var(--line);border-radius:14px;padding:13px;display:flex;gap:10px;align-items:center;text-align:left;background:white;color:var(--ink)}.staff.selected{border-color:var(--green);background:#f5faf7}.avatar{width:38px;height:38px;display:grid;place-items:center;background:#e4efe8;border-radius:50%;font-weight:800;color:var(--green);flex-shrink:0}.staff strong{display:block;font-size:13px}.staff small{display:block;color:var(--muted);font-size:11px}.staff .tick{margin-left:auto;color:var(--green);font-weight:900}.calendar-head{display:flex;justify-content:space-between;align-items:center;margin:0 0 12px}.calendar-head strong{font-size:14px}.month-nav{display:flex;gap:7px}.icon-btn{height:31px;width:31px;border:1px solid var(--line);border-radius:9px;background:white;color:var(--ink)}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.weekday{text-align:center;color:var(--muted);font-size:10px;font-weight:800;padding:5px 0}.day{border:1px solid transparent;border-radius:10px;background:#f4f7f5;min-height:44px;color:var(--ink);font-size:13px}.day:disabled{color:#c4cec8;background:#fafbfa;cursor:not-allowed;text-decoration:line-through}.day.selected{background:var(--green);color:white}.day.today:not(.selected){border-color:#8db8a1}.day .dot{display:block;width:4px;height:4px;border-radius:50%;background:var(--green);margin:2px auto 0}.day.selected .dot{background:white}.slot-groups{display:grid;gap:16px;margin-top:20px}.slot-group h4{font-size:12px;color:var(--muted);margin:0 0 9px}.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.slot{border:1px solid var(--line);border-radius:10px;background:white;padding:10px 4px;font-size:12px;font-weight:700}.slot.selected{background:var(--green);border-color:var(--green);color:white}.slot:disabled{background:#f7f8f7;color:#c0c9c3;text-decoration:line-through;cursor:not-allowed}.alert{padding:12px;border-radius:12px;background:#fff5e8;color:#805a25;font-size:12px;margin-top:14px}.btn-row{display:flex;gap:10px;margin-top:24px}.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:800;transition:.15s}.btn.primary{background:var(--green);color:white;flex:1}.btn.primary:hover{background:#1a5846}.btn.secondary{background:white;border:1px solid var(--line);color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}.summary{padding:21px;position:sticky;top:20px}.summary h3{margin:0 0 16px;font-size:16px}.summary-business{display:flex;gap:11px;align-items:center;padding-bottom:17px;border-bottom:1px solid var(--line)}.summary-business .logo{width:40px;height:40px;border-radius:12px;font-size:15px}.summary-business strong{display:block;font-size:13px}.summary-business small{display:block;color:var(--muted);font-size:11px}.sum-line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #edf1ee;font-size:12px}.sum-line span:first-child{color:var(--muted)}.sum-line strong{text-align:right;max-width:65%;overflow-wrap:anywhere}.sum-total{display:flex;justify-content:space-between;padding-top:16px;font-size:14px;font-weight:800}.summary .muted{font-size:11px;color:var(--muted);margin-top:14px}.business-card{padding:18px;margin-bottom:14px;box-shadow:none}.biz-row{display:flex;gap:12px;align-items:flex-start}.biz-row .logo{width:50px;height:50px}.biz-details strong{font-size:15px}.biz-details p{margin:3px 0;color:var(--muted);font-size:12px}.biz-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.biz-meta span{font-size:11px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;color:#52645b}.terms{font-size:11px;color:var(--muted);text-align:center;margin-top:18px}.terms a{color:var(--muted)}.success{padding:18px 4px;text-align:center}.success-icon{width:64px;height:64px;border-radius:50%;background:var(--green2);color:var(--green);display:grid;place-items:center;font-size:28px;margin:0 auto 18px}.success h3{font-size:25px;margin:0 0 7px;letter-spacing:-.6px}.success p{color:var(--muted);margin:0 auto 20px;max-width:440px}.confirm-card{text-align:left;border:1px solid var(--line);border-radius:15px;padding:16px;margin:20px 0}.confirm-card .sum-line:last-child{border-bottom:0}.linkbox{background:#f2f7f3;border-radius:12px;padding:13px;text-align:left;font-size:12px;margin-top:15px}.linkbox strong{display:block;margin-bottom:3px}.manage-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#163d33;color:white;padding:12px 16px;border-radius:12px;box-shadow:0 8px 25px #0002;font-size:13px;z-index:10;display:none;max-width:calc(100% - 30px)}.modal-backdrop{display:none;position:fixed;inset:0;background:#0d251f66;z-index:20;align-items:center;justify-content:center;padding:18px}.modal-backdrop.open{display:flex}.modal{background:white;border-radius:20px;padding:24px;width:min(100%,430px);box-shadow:0 20px 70px #0003}.modal h3{margin:0 0 5px}.modal p{color:var(--muted);font-size:13px;margin:0 0 18px}.footnote{text-align:center;color:#95a19a;font-size:11px;margin-top:18px}
+@media(max-width:800px){.shell{padding:13px 12px 30px}.layout{grid-template-columns:1fr;gap:14px}.summary{position:static;order:-1;padding:15px}.summary h3{margin-bottom:10px}.sum-line{padding:8px 0}.summary .muted{display:none}.hero{padding:22px 20px 18px}.hero h2{font-size:25px}.steps{padding:15px 16px 0;gap:3px}.step{justify-content:center}.step .label{display:none}.content{padding:20px 16px}.business-card{padding:15px}.summary-business{padding-bottom:10px}.summary .sum-line:nth-of-type(n+4){display:none}.sum-total{padding-top:10px}.secure{font-size:10px}}
+@media(max-width:420px){.two{grid-template-columns:1fr}.staff-grid{grid-template-columns:1fr}.slots{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(5,1fr)}.step .num{width:24px;height:24px}.section-head h3{font-size:18px}.day{min-height:39px}.hero h2{font-size:23px}.topbar{margin-bottom:12px}}
+
+/* Readability and glass-liquid interaction refinements */
+.hero{background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(231,243,236,.96));position:relative;isolation:isolate}
+.hero p{color:#53665d;line-height:1.65;position:relative;z-index:1}
+.eyebrow{color:#205e4b}
+.service{position:relative;isolation:isolate;overflow:hidden;background:rgba(255,255,255,.76);border:1px solid rgba(176,199,185,.72);box-shadow:0 5px 16px rgba(23,58,45,.045),inset 0 1px 0 rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#18332e}
+.service:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,rgba(255,255,255,.78),rgba(230,243,236,.46));pointer-events:none}
+.service:hover{border-color:#91b7a2;box-shadow:0 8px 22px rgba(23,58,45,.09),inset 0 1px 0 rgba(255,255,255,.95);transform:translateY(-1px)}
+.service.selected{background:rgba(222,241,230,.94);border-color:#246b56;box-shadow:0 0 0 1px rgba(36,107,86,.15) inset,0 7px 18px rgba(36,107,86,.08)}
+.service.selected:before{background:linear-gradient(120deg,rgba(255,255,255,.55),rgba(214,239,224,.72))}
+.service-info strong,.price{color:#18332e}
+.service-info small,.price small{color:#53665d}
+.check{background:rgba(255,255,255,.9);border-color:#a9bdb0;color:#fff}
+.slot{color:#18332e;background:#fff;border:1px solid #c8d8ce;box-shadow:0 2px 6px rgba(24,51,46,.045);min-height:42px;transition:background .15s,border-color .15s,box-shadow .15s}
+.slot:hover:not(:disabled),.slot:focus-visible{background:#eaf5ee;border-color:#246b56;outline:2px solid rgba(36,107,86,.18);outline-offset:1px}
+.slot.selected{background:#205f4b;color:#fff;border-color:#205f4b;box-shadow:0 4px 12px rgba(32,95,75,.2)}
+.slot:disabled{color:#7c8982;background:#f0f3f1;border-color:#dce4df;text-decoration:line-through;opacity:1}
+.slot-group h4{color:#53665d;font-weight:800;letter-spacing:.02em}
+.day{color:#18332e;background:#f0f6f2;border-color:#dbe7df;font-weight:700}
+.day:disabled{color:#9ba9a1;background:#f8faf8;border-color:#edf1ee;opacity:1}
+.section-head p{color:#5d7066}
+.note{color:#53665d;background:#f0f6f2}
+@media(prefers-reduced-motion:reduce){.service,.slot{transition:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="logo">CN</div><div><h1>CENTRA <small>Appointments, made simple</small></h1></div></div>
+    <div class="secure">Secure booking</div>
+  </header>
+  <div class="layout">
+    <main class="main">
+      <section class="hero">
+        <div class="eyebrow">Book directly with us</div>
+        <h2>Your time, well spent.</h2>
+        <p>Choose a service and a time that works for you. No customer account needed.</p>
+      </section>
+      <div class="steps" aria-label="Booking progress">
+        <div class="step active" data-step="1"><span class="num">1</span><span class="label">Service</span></div>
+        <div class="step" data-step="2"><span class="num">2</span><span class="label">Staff</span></div>
+        <div class="step" data-step="3"><span class="num">3</span><span class="label">Date & time</span></div>
+        <div class="step" data-step="4"><span class="num">4</span><span class="label">Details</span></div>
+        <div class="step" data-step="5"><span class="num">5</span><span class="label">Confirm</span></div>
+      </div>
+      <div class="content">
+        <section class="page active" id="page-1">
+          <div class="section-head"><div><h3>What would you like to book?</h3><p>Choose one or more services.</p></div><span class="pill">Step 1 of 5</span></div>
+          <div class="services" id="services"></div>
+          <div class="note">Prices are shown by this business. Your selected services and total duration update automatically.</div>
+          <div class="btn-row"><button class="btn primary" id="to-staff">Continue <span aria-hidden="true">→</span></button></div>
+        </section>
+        <section class="page" id="page-2">
+          <div class="section-head"><div><h3>Who would you like to see?</h3><p>Choose a team member or let us find the best fit.</p></div><span class="pill">Step 2 of 5</span></div>
+          <div class="staff-grid" id="staff-list"></div>
+          <div class="note">Only active staff who offer your selected services are listed.</div>
+          <div class="btn-row"><button class="btn secondary" data-back="1">Back</button><button class="btn primary" id="to-date">Choose a date →</button></div>
+        </section>
+        <section class="page" id="page-3">
+          <div class="section-head"><div><h3>Choose a date & time</h3><p>Appointments are available for the next two months.</p></div><span class="pill">Step 3 of 5</span></div>
+          <div class="calendar-head"><strong id="month-label"></strong><div class="month-nav"><button class="icon-btn" id="prev-month" aria-label="Previous month">‹</button><button class="icon-btn" id="next-month" aria-label="Next month">›</button></div></div>
+          <div class="days" id="calendar"></div>
+          <div class="alert" id="closed-message" style="display:none"></div>
+          <div id="slots-wrap" class="slot-groups"></div>
+          <div class="btn-row"><button class="btn secondary" data-back="2">Back</button><button class="btn primary" id="to-details" disabled>Continue →</button></div>
+        </section>
+        <section class="page" id="page-4">
+          <div class="section-head"><div><h3>Your contact details</h3><p>We’ll send your confirmation and booking link by email.</p></div><span class="pill">Step 4 of 5</span></div>
+          <form id="details-form">
+            <div class="field"><label for="cust-name">Full name *</label><input id="cust-name" autocomplete="name" required placeholder="e.g. Ananya Rao"></div>
+            <div class="two"><div class="field"><label for="cust-email">Email address *</label><input id="cust-email" type="email" autocomplete="email" required placeholder="you@example.com"></div><div class="field"><label for="cust-phone">Phone number *</label><input id="cust-phone" type="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div></div>
+            <div class="field"><label for="cust-note">Note for the business <span style="font-weight:500;color:var(--muted)">(optional)</span></label><textarea id="cust-note" placeholder="Anything we should know before your visit?"></textarea></div>
+            <div class="note">Your phone number is not verified. Please enter a number where the business can reach you if needed.</div>
+            <div class="btn-row"><button type="button" class="btn secondary" data-back="3">Back</button><button type="submit" class="btn primary">Review booking →</button></div>
+          </form>
+        </section>
+        <section class="page" id="page-5">
+          <div class="section-head"><div><h3>Review your booking</h3><p>Check the details before confirming.</p></div><span class="pill">Step 5 of 5</span></div>
+          <div id="review"></div>
+          <div id="deposit-area"></div>
+          <div class="btn-row"><button class="btn secondary" data-back="4">Back</button><button class="btn primary" id="confirm-booking">Confirm booking</button></div>
+          <p class="terms">By confirming, you agree to the <a href="#terms" id="terms-link">terms and conditions</a>.</p>
+        </section>
+        <section class="page" id="page-success">
+          <div class="success"><div class="success-icon">✓</div><h3>You’re booked!</h3><p>Your appointment is confirmed.</p>
+            <div class="confirm-card" id="confirmation-summary"></div>
+            <div class="btn-row"><button class="btn primary" id="add-calendar">＋ Add to calendar</button><button class="btn secondary" id="manage-booking">Manage booking</button><button class="btn primary" id="pay-retry" style="display:none">Pay deposit</button></div>
+            <div class="linkbox"><strong>Your booking code</strong><span id="booking-code"></span><br><span style="color:var(--muted)">Keep this code with your confirmation email.</span></div>
+          </div>
+        </section>
+        <section class="page" id="page-manage">
+          <div class="section-head"><div><h3>Manage your booking</h3><p>Choose what you need to do with this appointment.</p></div></div>
+          <div class="confirm-card" id="manage-summary"></div>
+          <div class="manage-actions"><button class="btn secondary" id="reschedule-btn">Reschedule</button><button class="btn secondary" id="cancel-btn">Cancel booking</button></div>
+          <div class="note" id="manage-note"></div>
+          <div class="btn-row"><button class="btn primary" id="back-confirmation">Back to confirmation</button></div>
+        </section>
+        <section class="page" id="page-recover">
+          <div class="section-head"><div><h3>Manage my booking</h3><p>Lost your booking link? Enter the email you booked with and your booking code.</p></div></div>
+          <p class="note" id="recover-msg">We'll email you a one-time code to open your booking.</p>
+          <form id="recover-form">
+            <div class="two"><div class="field"><label for="rec-email">Email address</label><input id="rec-email" type="email" required autocomplete="email"></div><div class="field"><label for="rec-code">Booking code</label><input id="rec-code" required placeholder="CN-XXXXXX"></div></div>
+            <div class="field" id="rec-otp-wrap" style="display:none"><label for="rec-otp">6-digit code from your email</label><input id="rec-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></div>
+            <div class="btn-row"><button type="submit" class="btn primary" id="rec-submit">Email me a code</button></div>
+          </form>
+        </section>
+      </div>
+    </main>
+    <aside>
+      <section class="business-card">
+        <div class="biz-row"><div class="logo"></div><div class="biz-details"><strong></strong><p></p><p></p></div></div>
+        <div class="biz-meta"></div>
+        <div class="terms"><a href="#terms" id="terms-link-side">Terms & conditions</a></div>
+      </section>
+      <section class="summary">
+        <h3>Your appointment</h3>
+        <div class="summary-business"><div class="logo"></div><div><strong></strong><small></small></div></div>
+        <div class="sum-line"><span>Services</span><strong id="sum-services">Choose a service</strong></div>
+        <div class="sum-line"><span>Duration</span><strong id="sum-duration">—</strong></div>
+        <div class="sum-line"><span>Team member</span><strong id="sum-staff">Not selected</strong></div>
+        <div class="sum-line"><span>Date & time</span><strong id="sum-datetime">Not selected</strong></div>
+        <div class="sum-total"><span>Estimated total</span><span id="sum-price">₹0</span></div>
+        <p class="muted">Any deposit and cancellation terms will be shown before you confirm.</p>
+      </section>
+      <div class="footnote">Powered by CENTRA · Booking without an account</div>
+    </aside>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop" id="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <h3 id="modal-title">Cancel this booking?</h3><p id="modal-copy">Cancellation terms depend on the business’s refund window.</p>
+    <div class="btn-row"><button class="btn secondary" id="modal-close">Keep booking</button><button class="btn primary" id="modal-confirm">Yes, cancel</button></div>
+  </div>
+</div>
+<script src="/static/scripts/api.js"></script>
+<script>
+let BUSINESS=null,SERVICES=[],STAFF=[];
+const state={services:[],staff:"any",date:null,slot:null,slots:[],monthStart:null,customer:{},booking:null,token:null,mode:"book",payment:null};
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n||0);
+const durationText=m=>m>=60?`${Math.floor(m/60)} hr${m%60?` ${m%60} min`:""}`:`${m} min`;
+const localISO=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const t12=t=>{let[h,m]=t.split(":").map(Number);return`${String(h%12||12).padStart(2,"0")}:${String(m).padStart(2,"0")} ${h<12?"AM":"PM"}`};
+const selectedServices=()=>SERVICES.filter(s=>state.services.includes(s.id));
+const totalDuration=()=>selectedServices().reduce((a,s)=>a+s.minutes,0);
+const totalPrice=()=>selectedServices().reduce((a,s)=>a+(s.depositBase||0),0);
+const staffName=()=>STAFF.find(s=>String(s.id)===String(state.staff))?.name||"Any available";
+const depositAmount=()=>BUSINESS&&BUSINESS.depositEnabled&&totalPrice()>0?Math.ceil(totalPrice()*BUSINESS.depositPercent)/100:0;
+function escapeHTML(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function initials(n){return n.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join("").toUpperCase()||"•"}
+function toast(msg){$("toast").textContent=msg;$("toast").style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>$("toast").style.display="none",3600)}
+function paintBusiness(){const b=BUSINESS;document.title=b.name+" — Book an appointment";
+ document.querySelectorAll(".business-card .logo,.summary-business .logo").forEach(el=>{el.innerHTML=b.logo?`<img src="${escapeHTML(b.logo)}" alt="" style="width:100%;height:100%;object-fit:contain;border-radius:inherit">`:escapeHTML(initials(b.name))});
+ const d=document.querySelector(".biz-details");d.innerHTML=`<strong>${escapeHTML(b.name)}</strong><p>${escapeHTML(b.type||"")}</p><p>${escapeHTML(b.address)}</p>`;
+ document.querySelector(".biz-meta").innerHTML=`<span>◷ ${escapeHTML(b.hours)}</span><span>☎ <a href="tel:${escapeHTML(b.phone)}">${escapeHTML(b.phone)}</a></span>`;
+ const sb=document.querySelector(".summary-business div:last-child");sb.innerHTML=`<strong>${escapeHTML(b.name)}</strong><small>${escapeHTML(b.address)}</small>`;
+ const note=document.querySelector("#page-1 .note");if(note)note.textContent=b.prices?"Prices are set by this business. Your selected services and total duration update automatically.":"Prices are shared by the business when you visit.";
+ const snote=document.querySelector("#page-2 .note");if(snote)snote.textContent="Choose a team member, or pick “Any available” and we'll match you with whoever is free.";
+ if(!b.prices)$("sum-price").closest(".sum-total").style.display="none"}
+function renderServices(){$("services").innerHTML=SERVICES.map(s=>`<button type="button" class="service ${state.services.includes(s.id)?"selected":""}" data-service="${s.id}" aria-pressed="${state.services.includes(s.id)}"><span class="check"></span><span class="service-info"><strong>${escapeHTML(s.name)}</strong><small>${escapeHTML(s.description||durationText(s.minutes))}</small></span><span class="price">${BUSINESS.prices&&s.price!==null?money(s.price):""}<small>${durationText(s.minutes)}</small></span></button>`).join("")||'<div class="note">This business has no services open for booking right now. Please contact them directly.</div>';
+ document.querySelectorAll("[data-service]").forEach(el=>el.onclick=()=>{const id=+el.dataset.service;if(state.services.includes(id))state.services=state.services.filter(x=>x!==id);else{if(!BUSINESS.allowMultiple)state.services=[];state.services.push(id)}state.slot=null;renderServices();updateSummary()})}
+function renderStaff(){$("staff-list").innerHTML=STAFF.map(s=>`<button type="button" class="staff ${String(state.staff)===String(s.id)?"selected":""}" data-staff="${s.id}"><span class="avatar">${escapeHTML(s.initials)}</span><span><strong>${escapeHTML(s.name)}</strong><small>${escapeHTML(s.role||"")}</small></span><span class="tick">${String(state.staff)===String(s.id)?"✓":""}</span></button>`).join("");
+ document.querySelectorAll("[data-staff]").forEach(el=>el.onclick=()=>{state.staff=el.dataset.staff;renderStaff();updateSummary();if(state.date)loadSlots()})}
+function updateSummary(){const ss=selectedServices();$("sum-services").textContent=ss.length?ss.map(s=>s.name).join(", "):"Choose a service";$("sum-duration").textContent=ss.length?durationText(totalDuration()):"—";$("sum-staff").textContent=STAFF.length?staffName():"—";
+ $("sum-datetime").textContent=state.date&&state.slot?`${new Date(state.date+"T12:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}, ${t12(state.slot)}`:"Not selected";$("sum-price").textContent=money(totalPrice())}
+function showPage(n){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$("page-"+n).classList.add("active");document.querySelectorAll(".step").forEach(el=>{const x=+el.dataset.step;el.classList.toggle("active",x===n);el.classList.toggle("done",typeof n==="number"&&x<n)});window.scrollTo({top:0,behavior:"smooth"})}
+const isClosed=iso=>BUSINESS.closedDates.includes(iso);
+const inWindow=iso=>iso>=BUSINESS.window.from&&iso<=BUSINESS.window.to;
+function renderCalendar(){const d=state.monthStart;$("month-label").textContent=d.toLocaleDateString("en-IN",{month:"long",year:"numeric"});
+ const first=new Date(d.getFullYear(),d.getMonth(),1).getDay(),daysInMonth=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+ const from=new Date(BUSINESS.window.from+"T12:00:00"),to=new Date(BUSINESS.window.to+"T12:00:00");
+ $("prev-month").disabled=d<=new Date(from.getFullYear(),from.getMonth(),1);$("next-month").disabled=d>=new Date(to.getFullYear(),to.getMonth(),1);
+ let out=["S","M","T","W","T","F","S"].map(x=>`<div class="weekday">${x}</div>`).join("");for(let i=0;i<first;i++)out+="<div></div>";
+ for(let day=1;day<=daysInMonth;day++){const date=new Date(d.getFullYear(),d.getMonth(),day),iso=localISO(date),closed=isClosed(iso),enabled=inWindow(iso)&&!closed;
+  out+=`<button class="day ${state.date===iso?"selected":""} ${iso===BUSINESS.window.from?"today":""}" data-day="${iso}" ${enabled?"":"disabled"} title="${closed?"Closed":enabled?"Available":"Outside booking window"}">${day}${closed&&inWindow(iso)?'<span class="dot" style="background:#d8a36c"></span>':""}</button>`}
+ $("calendar").innerHTML=out;document.querySelectorAll("[data-day]").forEach(el=>el.onclick=()=>{state.date=el.dataset.day;state.slot=null;renderCalendar();loadSlots();updateSummary();$("to-details").disabled=true})}
+async function loadSlots(){const wrap=$("slots-wrap");if(!state.date){wrap.innerHTML='<div class="note">Select a date to see available time slots.</div>';return}
+ wrap.innerHTML='<div class="note">Checking available times…</div>';
+ try{const r=await Centra.get(`/api/public/businesses/${encodeURIComponent(BUSINESS.slug)}/availability?date=${state.date}&services=${state.services.join(",")}&staff=${encodeURIComponent(state.staff)}`);
+  if(r.closed){wrap.innerHTML='<div class="alert">This business is closed on the selected date. Please choose another day.</div>';state.slots=[];return}
+  const prev=state.slot;state.slots=r.slots;renderSlots(prev)}catch(e){wrap.innerHTML=`<div class="alert">${escapeHTML(e.message)}</div>`}}
+function renderSlots(prevSlot){const wrap=$("slots-wrap"),slots=state.slots;let lost="";
+ if(prevSlot&&!slots.some(s=>s.time===prevSlot)){state.slot=null;$("to-details").disabled=true;updateSummary();
+  lost=`<div class="alert"><div><b>Staff member unavailable for the selected time slot.</b>${slots.length?`<br>Time slots ${escapeHTML(staffName())} is available: ${slots.slice(0,8).map(s=>t12(s.time)).join(", ")}${slots.length>8?"…":""}`:""}</div></div>`}
+ const groups=["Morning","Afternoon","Evening"].map(p=>[p,slots.filter(s=>s.period===p)]);
+ wrap.innerHTML=lost+`<div class="section-head" style="margin:2px 0 0"><div><h3 style="font-size:16px">Available times</h3><p>${new Date(state.date+"T12:00:00").toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long"})}</p></div></div>`+groups.filter(g=>g[1].length).map(g=>`<div class="slot-group"><h4>${g[0]}</h4><div class="slots">${g[1].map(s=>`<button type="button" class="slot ${state.slot===s.time?"selected":""}" data-slot="${s.time}">${t12(s.time)}</button>`).join("")}</div></div>`).join("")+(!slots.length?`<div class="alert">${String(state.staff)!=="any"?`Staff member unavailable on this date. Try another date or choose “Any available”.`:"No times are free on this date. Please try another day."}</div>`:"");
+ document.querySelectorAll("[data-slot]").forEach(el=>el.onclick=()=>{state.slot=el.dataset.slot;renderSlots();updateSummary();$("to-details").disabled=false})}
+function reviewHTML(b){const items=b?b.services:selectedServices().map(s=>({name:s.name,minutes:s.minutes,price:s.price}));const date=b?b.date:state.date,time=b?b.time:state.slot,cust=b?b.customer:state.customer;
+ return `<div class="confirm-card">${b?`<div class="sum-line"><span>Status</span><strong>${escapeHTML(b.status_label)}</strong></div>`:""}${items.map(s=>`<div class="sum-line"><span>${escapeHTML(s.name)} · ${durationText(s.minutes)}</span><strong>${BUSINESS.prices&&s.price!==null&&s.price!==undefined?money(s.price):"Price on visit"}</strong></div>`).join("")}${STAFF.length?`<div class="sum-line"><span>Staff member</span><strong>${escapeHTML(b?b.staff:staffName())}</strong></div>`:""}<div class="sum-line"><span>Date & time</span><strong>${new Date(date+"T12:00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short",year:"numeric"})} · ${t12(time)}</strong></div><div class="sum-line"><span>Name</span><strong>${escapeHTML(cust.name)}</strong></div><div class="sum-line"><span>Email</span><strong>${escapeHTML(cust.email)}</strong></div><div class="sum-line"><span>Phone</span><strong>${escapeHTML(cust.phone)}</strong></div>${(b?b.note:cust.note)?`<div class="sum-line"><span>Note</span><strong>${escapeHTML(b?b.note:cust.note)}</strong></div>`:""}${b&&b.deposit?`<div class="sum-line"><span>Deposit</span><strong>${money(b.deposit)} · ${escapeHTML(b.deposit_status)}</strong></div>`:""}${BUSINESS.prices?`<div class="sum-total"><span>Estimated total</span><span>${money(b?b.total:totalPrice())}</span></div>`:""}</div>`}
+function openTerms(){window.open("/terms","_blank")}
+function showSuccess(){const b=state.booking;$("booking-code").textContent=b.code;$("confirmation-summary").innerHTML=reviewHTML(b);
+ const p=document.querySelector("#page-success .success>p");if(p)p.textContent=b.status==="confirmed"?"Your appointment is confirmed. We've emailed your confirmation and a link to manage this booking.":b.status==="awaiting_payment"?"Your slot is held while you pay the deposit.":"Booking status: "+b.status_label;
+ const icon=document.querySelector(".success-icon"),h=document.querySelector("#page-success h3");if(b.status==="awaiting_payment"){icon.textContent="◷";h.textContent="Almost done";}else{icon.textContent="✓";h.textContent="You’re booked!"}
+ $("pay-retry").style.display=b.status==="awaiting_payment"?"inline-flex":"none";showPage("success")}
+async function payDeposit(){try{await Centra.pay(state.payment,{name:state.customer.name,email:state.customer.email,contact:state.customer.phone});
+  const r=await Centra.get("/api/public/manage?token="+encodeURIComponent(state.token));state.booking=r.booking;toast(state.booking.status==="confirmed"?"Deposit paid. You're booked!":"Payment received.");showSuccess()}
+ catch(e){toast(e.code==="dismissed"?"Your slot is held for a few minutes. Pay the deposit to confirm it.":e.message);showSuccess()}}
+$("to-staff").onclick=()=>{if(!state.services.length){toast("Please select at least one service.");return}if(!STAFF.length){state.staff="any";showPage(3);renderCalendar();loadSlots();return}showPage(2)};
+$("to-date").onclick=()=>{showPage(3);renderCalendar();loadSlots()};
+$("to-details").onclick=async()=>{if(!state.date||!state.slot){toast("Choose a date and time first.");return}
+ if(state.mode==="reschedule"){try{const r=await Centra.post("/api/public/manage/reschedule",{token:state.token,date:state.date,time:state.slot});state.booking=r.booking;toast("Your booking has been moved.");openManage()}catch(e){toast(e.message);if(e.code==="slot_taken")loadSlots()}return}
+ showPage(4)};
+document.querySelectorAll("[data-back]").forEach(el=>el.onclick=()=>{let n=+el.dataset.back;if(n===2&&!STAFF.length)n=1;if(state.mode==="reschedule"&&n<3){openManage();return}showPage(n)});
+$("prev-month").onclick=()=>{state.monthStart=new Date(state.monthStart.getFullYear(),state.monthStart.getMonth()-1,1);renderCalendar()};
+$("next-month").onclick=()=>{state.monthStart=new Date(state.monthStart.getFullYear(),state.monthStart.getMonth()+1,1);renderCalendar()};
+$("details-form").onsubmit=e=>{e.preventDefault();state.customer={name:$("cust-name").value.trim(),email:$("cust-email").value.trim(),phone:$("cust-phone").value.trim(),note:$("cust-note").value.trim()};
+ if(!state.customer.name||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.customer.email)||state.customer.phone.replace(/\D/g,"").length<10){toast("Enter your name, a valid email and a phone number.");return}
+ $("review").innerHTML=reviewHTML();const dep=depositAmount();
+ $("deposit-area").innerHTML=dep?`<div class="note"><strong>Deposit required: ${money(dep)}</strong> (${BUSINESS.depositPercent}% of the total)<br>Pay the deposit to secure this appointment. Your slot is held for a few minutes during payment. Cancel at least ${BUSINESS.refundWindowHours} hours before your appointment for a full deposit refund; later cancellations forfeit the deposit.</div>`:'<div class="note">No deposit is required for this booking.</div>';
+ $("confirm-booking").textContent=dep?"Confirm & pay deposit":"Confirm booking";showPage(5)};
+$("confirm-booking").onclick=async()=>{const btn=$("confirm-booking");btn.disabled=true;
+ try{const r=await Centra.post(`/api/public/businesses/${encodeURIComponent(BUSINESS.slug)}/bookings`,{services:state.services,staff:String(state.staff),date:state.date,time:state.slot,...state.customer});
+  state.booking=r.booking;state.token=r.token;state.payment=r.payment;if(r.payment){await payDeposit()}else showSuccess()}
+ catch(e){toast(e.message);if(e.code==="slot_taken"){showPage(3);loadSlots()}}
+ btn.disabled=false};
+function openManage(){state.mode="manage";const b=state.booking;$("manage-summary").innerHTML=reviewHTML(b);
+ const active=["confirmed","requested","awaiting_payment"].includes(b.status);$("reschedule-btn").style.display=["confirmed","requested"].includes(b.status)?"":"none";$("cancel-btn").style.display=active?"":"none";
+ $("manage-note").textContent=active?`This link works until your appointment time. ${b.deposit_status==="paid"?`Cancel at least ${b.refund_window_hours} hours before for a full deposit refund.`:""}`:"This booking can no longer be changed.";
+ $("back-confirmation").style.display=state.fromBooking?"":"none";showPage("manage")}
+$("manage-booking").onclick=()=>{state.fromBooking=true;openManage()};
+$("back-confirmation").onclick=()=>showSuccess();
+$("pay-retry").onclick=async()=>{try{const r=await Centra.post("/api/public/bookings/pay",{token:state.token});state.payment=r.payment;await payDeposit()}catch(e){toast(e.message);if(e.code==="hold_expired"){state.booking.status="expired";state.booking.status_label="Expired";showSuccess()}}};
+$("cancel-btn").onclick=()=>{const b=state.booking;const hrs=(new Date(b.date+"T"+b.time+":00")-new Date())/36e5;$("modal").classList.add("open");
+ $("modal-copy").textContent=b.deposit_status==="paid"?(hrs>=b.refund_window_hours?"You're cancelling more than "+b.refund_window_hours+" hours before your appointment, so your deposit will be refunded in full.":"You're cancelling within "+b.refund_window_hours+" hours of your appointment, so the deposit is not refunded."):"Your appointment will be cancelled."};
+$("modal-close").onclick=()=>$("modal").classList.remove("open");
+$("modal-confirm").onclick=async()=>{$("modal").classList.remove("open");try{const r=await Centra.post("/api/public/manage/cancel",{token:state.token});state.booking=r.booking;toast(r.refunded?"Booking cancelled. Your deposit will be refunded.":"Booking cancelled.");openManage()}catch(e){toast(e.message)}};
+$("reschedule-btn").onclick=()=>{state.mode="reschedule";const b=state.booking;state.services=[];state.date=null;state.slot=null;
+ const ids=b.services.map(x=>SERVICES.find(s=>s.name===x.name)?.id).filter(Boolean);state.services=ids;state.staff=STAFF.find(s=>s.name===b.staff)?.id||"any";
+ if(!ids.length){toast("Please contact the business to change this booking.");return}
+ $("to-details").textContent="Save new time →";showPage(3);renderCalendar();loadSlots();updateSummary()};
+$("add-calendar").onclick=()=>{const b=state.booking;const start=new Date(b.date+"T"+b.time+":00");const mins=b.services.reduce((a,s)=>a+s.minutes,0);const end=new Date(start.getTime()+mins*60000);
+ const fmt=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+ const ics=`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//CENTRA//Booking//EN\r\nBEGIN:VEVENT\r\nUID:${b.code}@centra\r\nDTSTAMP:${fmt(new Date())}\r\nDTSTART:${fmt(start)}\r\nDTEND:${fmt(end)}\r\nSUMMARY:${BUSINESS.name} appointment\r\nLOCATION:${BUSINESS.address}\r\nDESCRIPTION:Booking code ${b.code}\r\nEND:VEVENT\r\nEND:VCALENDAR`;
+ const url=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));const a=document.createElement("a");a.href=url;a.download="centra-appointment.ics";a.click();URL.revokeObjectURL(url);toast("Calendar file created.")};
+$("terms-link").onclick=e=>{e.preventDefault();openTerms()};$("terms-link-side").onclick=e=>{e.preventDefault();openTerms()};
+$("recover-form").onsubmit=async e=>{e.preventDefault();const email=$("rec-email").value.trim(),code=$("rec-code").value.trim();
+ try{if(!state.recoverSent){await Centra.post("/api/public/manage/recover/request",{email,code});state.recoverSent=true;$("rec-otp-wrap").style.display="";$("rec-submit").textContent="Open my booking";toast("We emailed you a 6-digit code.");return}
+  const r=await Centra.post("/api/public/manage/recover/verify",{email,code,otp:$("rec-otp").value.trim()});location.href="/manage?token="+encodeURIComponent(r.token)}catch(err){toast(err.message)}};
+function setBusiness(b){BUSINESS=b;SERVICES=b.services;STAFF=b.staff;const f=new Date(b.window.from+"T12:00:00");state.monthStart=new Date(f.getFullYear(),f.getMonth(),1);paintBusiness()}
+(async function init(){const params=new URLSearchParams(location.search);
+ if(location.pathname==="/manage"){document.querySelector(".steps").style.display="none";document.querySelector(".hero").style.display="none";
+  const token=params.get("token");if(!token){showPage("recover");return}
+  try{const r=await Centra.get("/api/public/manage?token="+encodeURIComponent(token));state.token=token;state.booking=r.booking;setBusiness(r.business);
+   history.replaceState(null,"","/manage?token="+encodeURIComponent(token));renderServices();renderStaff();updateSummary();openManage()}
+  catch(e){showPage("recover");$("recover-msg").textContent=e.message+" You can open your booking with your email and booking code."}
+  return}
+ const slug=location.pathname.split("/").filter(Boolean)[0];
+ try{setBusiness(await Centra.get("/api/public/businesses/"+encodeURIComponent(slug)))}catch(e){document.querySelector(".content").innerHTML=`<div class="alert">${escapeHTML(e.message)}</div>`;return}
+ renderServices();renderStaff();updateSummary()})();
+</script>
+</body>
+</html>

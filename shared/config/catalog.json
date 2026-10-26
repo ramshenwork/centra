@@ -1,0 +1,945 @@
+{
+ "_note": "Preloaded categories, business types and services shown in sign-up. Edit freely and restart the app. 'openGroups' = groups expanded by default for each business type.",
+ "categories": [
+  {
+   "name": "Beauty & Wellness",
+   "icon": "💇",
+   "types": [
+    "Salon",
+    "Spa"
+   ],
+   "groups": [
+    {
+     "name": "Haircuts & basics",
+     "services": [
+      "Hair Salons",
+      "Barbershops",
+      "Kids' Haircuts",
+      "Hair Trimming",
+      "Hair Styling",
+      "Blowouts",
+      "Hair Wash"
+     ]
+    },
+    {
+     "name": "Hair treatments",
+     "services": [
+      "Hair Spa",
+      "Hair Conditioning",
+      "Scalp Treatments",
+      "Dandruff Treatments",
+      "Hair Smoothening",
+      "Keratin Treatments",
+      "Hair Rebonding",
+      "Hair Straightening",
+      "Hair Perming"
+     ]
+    },
+    {
+     "name": "Hair colour",
+     "services": [
+      "Hair Colouring",
+      "Root Touch-Ups",
+      "Grey Hair Coverage",
+      "Highlights",
+      "Lowlights",
+      "Balayage",
+      "Ombre",
+      "Colour Correction"
+     ]
+    },
+    {
+     "name": "Extensions & occasion hair",
+     "services": [
+      "Hair Extensions",
+      "Hair Braiding",
+      "Bridal Hairstyles",
+      "Party Hairstyles"
+     ]
+    },
+    {
+     "name": "Beard & grooming",
+     "services": [
+      "Beard Trimming",
+      "Beard Shaping",
+      "Clean Shave",
+      "Hot Towel Shave",
+      "Head Shave",
+      "Moustache Grooming",
+      "Hair and Beard Packages"
+     ]
+    },
+    {
+     "name": "Nails",
+     "services": [
+      "Manicure",
+      "Pedicure",
+      "Spa Manicure",
+      "Spa Pedicure",
+      "Gel Manicure",
+      "Gel Pedicure",
+      "French Manicure",
+      "Nail Extensions",
+      "Acrylic Nails",
+      "Gel Nail Extensions",
+      "Builder Gel Nails",
+      "Polygel Nails",
+      "Nail Refills",
+      "Nail Removal",
+      "Nail Repair",
+      "Nail Art",
+      "Chrome Nails",
+      "Ombre Nails",
+      "Cat-Eye Nails",
+      "3D Nail Art",
+      "Nail Polish Application",
+      "Nail Polish Removal",
+      "Cuticle Care",
+      "Nail Strengthening"
+     ]
+    },
+    {
+     "name": "Brows, lashes & threading",
+     "services": [
+      "Eyebrow Threading",
+      "Upper-Lip Threading",
+      "Full-Face Threading",
+      "Eyebrow Shaping",
+      "Eyebrow Tinting",
+      "Eyelash Tinting",
+      "Eyelash Extensions",
+      "Eyelash Extension Refills",
+      "Lash Lifts",
+      "Brow Lamination"
+     ]
+    },
+    {
+     "name": "Waxing",
+     "services": [
+      "Facial Waxing",
+      "Full-Body Waxing",
+      "Underarm Waxing",
+      "Arm Waxing",
+      "Leg Waxing",
+      "Bikini Waxing",
+      "Brazilian Waxing",
+      "Sugaring"
+     ]
+    },
+    {
+     "name": "Facials & skin",
+     "services": [
+      "Basic Facial",
+      "Express Facial",
+      "Deep-Cleansing Facial",
+      "Hydrating Facial",
+      "Brightening Facial",
+      "Anti-Ageing Facial",
+      "Acne Facial",
+      "Sensitive-Skin Facial",
+      "Gold Facial",
+      "Cleanup",
+      "Microdermabrasion",
+      "Hydrafacial",
+      "Dermaplaning",
+      "Chemical Peels",
+      "LED Skin Treatment",
+      "Skin Analysis",
+      "Pigmentation Consultation",
+      "Laser Hair Reduction"
+     ]
+    },
+    {
+     "name": "Makeup & bridal",
+     "services": [
+      "Makeup Application",
+      "Bridal Makeup",
+      "Engagement Makeup",
+      "Reception Makeup",
+      "Party Makeup",
+      "Airbrush Makeup",
+      "Photoshoot Makeup",
+      "Groom Makeup",
+      "Makeup Trial",
+      "Bridesmaid Makeup",
+      "Saree Draping",
+      "Bridal Packages"
+     ]
+    },
+    {
+     "name": "Massage & spa",
+     "services": [
+      "Swedish Massage",
+      "Deep-Tissue Massage",
+      "Aromatherapy Massage",
+      "Sports Massage",
+      "Hot-Stone Massage",
+      "Head Massage",
+      "Foot Massage",
+      "Back Massage",
+      "Neck and Shoulder Massage",
+      "Couples Massage",
+      "Foot Reflexology",
+      "Body Scrub",
+      "Body Polish",
+      "Body Wrap",
+      "Steam Session",
+      "Sauna Session",
+      "Spa Packages"
+     ]
+    },
+    {
+     "name": "Fitness & wellness",
+     "services": [
+      "Yoga Session",
+      "Personal Training",
+      "Pilates Session",
+      "Meditation Session",
+      "Stretching Session",
+      "Nutrition Consultation",
+      "Wellness Consultation",
+      "Weight-Management Consultation"
+     ]
+    }
+   ],
+   "openGroups": {
+    "Salon": [
+     "Haircuts & basics",
+     "Hair colour",
+     "Beard & grooming"
+    ],
+    "Spa": [
+     "Massage & spa",
+     "Facials & skin"
+    ]
+   }
+  },
+  {
+   "name": "Automotive",
+   "icon": "🚘",
+   "types": [
+    "Car Detailing",
+    "Car Service"
+   ],
+   "groups": [
+    {
+     "name": "Washing & cleaning",
+     "services": [
+      "Car Wash",
+      "Exterior Car Wash",
+      "Foam Wash",
+      "Pressure Wash",
+      "Waterless Car Wash",
+      "Interior Cleaning",
+      "Interior Vacuuming",
+      "Dashboard Cleaning",
+      "Seat Cleaning",
+      "Leather Seat Cleaning",
+      "Fabric Seat Shampooing",
+      "Carpet Cleaning",
+      "Roof-Liner Cleaning",
+      "Floor-Mat Cleaning",
+      "AC Vent Cleaning",
+      "Engine Bay Cleaning",
+      "Underbody Wash",
+      "Wheel Cleaning",
+      "Tyre Cleaning",
+      "Tyre Dressing",
+      "Window Cleaning",
+      "Odour Removal",
+      "Pet-Hair Removal",
+      "Stain Removal",
+      "Interior Sanitisation",
+      "Premium Car Wash",
+      "Full Car Wash",
+      "SUV Wash",
+      "Bike Wash"
+     ]
+    },
+    {
+     "name": "Detailing & paint correction",
+     "services": [
+      "Bike Detailing",
+      "Car Detailing",
+      "Interior Detailing",
+      "Exterior Detailing",
+      "Full Car Detailing",
+      "Paint Decontamination",
+      "Clay-Bar Treatment",
+      "Paint Polishing",
+      "Single-Stage Polishing",
+      "Multi-Stage Paint Correction",
+      "Swirl-Mark Removal",
+      "Scratch Removal",
+      "Water-Spot Removal",
+      "Headlight Restoration",
+      "Chrome Polishing",
+      "Plastic Trim Restoration",
+      "Leather Conditioning"
+     ]
+    },
+    {
+     "name": "Coatings, PPF & wraps",
+     "services": [
+      "Car Waxing",
+      "Paint Sealant Application",
+      "Ceramic Coating",
+      "Graphene Coating",
+      "Paint Protection Film (PPF)",
+      "Partial PPF Installation",
+      "Full-Body PPF Installation",
+      "Matte PPF Installation",
+      "PPF Removal",
+      "PPF Repair",
+      "Ceramic Coating Maintenance",
+      "Glass Coating",
+      "Wheel Coating",
+      "Car Wrapping",
+      "Decal Installation"
+     ]
+    },
+    {
+     "name": "Body & paint repair",
+     "services": [
+      "Paint Touch-Up",
+      "Dent Removal",
+      "Bumper Repair"
+     ]
+    },
+    {
+     "name": "Oil, fluids & filters",
+     "services": [
+      "Engine Oil Change",
+      "Oil Filter Replacement",
+      "Air Filter Replacement",
+      "Cabin Filter Replacement",
+      "Fuel Filter Replacement",
+      "Spark Plug Replacement",
+      "Coolant Replacement",
+      "Brake Fluid Replacement",
+      "Transmission Fluid Change",
+      "Differential Oil Change",
+      "Power Steering Fluid Service"
+     ]
+    },
+    {
+     "name": "Servicing & engine",
+     "services": [
+      "General Car Service",
+      "Minor Car Service",
+      "Major Car Service",
+      "Scheduled Maintenance",
+      "Pre-Service Inspection",
+      "Vehicle Health Check",
+      "Engine Diagnostics",
+      "Engine Repair",
+      "Engine Overhaul",
+      "Engine Tune-Up",
+      "Timing Belt Replacement",
+      "Timing Chain Inspection",
+      "Radiator Repair",
+      "Cooling System Service",
+      "Water Pump Replacement",
+      "Thermostat Replacement",
+      "Clutch Repair",
+      "Clutch Replacement",
+      "Gearbox Inspection",
+      "Transmission Repair",
+      "Exhaust Repair",
+      "Fuel Injector Cleaning",
+      "Fuel System Cleaning",
+      "Starter Motor Repair",
+      "Alternator Repair",
+      "Oil Leak Diagnosis",
+      "Overheating Diagnosis"
+     ]
+    },
+    {
+     "name": "Brakes, tyres & suspension",
+     "services": [
+      "Brake Inspection",
+      "Brake Pad Replacement",
+      "Brake Disc Replacement",
+      "Brake Caliper Service",
+      "Tyre Puncture Repair",
+      "Tyre Replacement",
+      "Tyre Rotation",
+      "Wheel Balancing",
+      "Wheel Alignment",
+      "Alloy-Wheel Repair",
+      "Alloy-Wheel Refurbishment",
+      "Wheel Bearing Replacement",
+      "Suspension Inspection",
+      "Shock Absorber Replacement",
+      "Steering System Repair"
+     ]
+    },
+    {
+     "name": "Battery, AC & electrical",
+     "services": [
+      "Battery Testing",
+      "Battery Replacement",
+      "Car AC Inspection",
+      "AC Gas Recharge",
+      "AC Leak Diagnosis",
+      "AC Compressor Repair",
+      "AC Condenser Replacement",
+      "Blower Motor Repair",
+      "Electrical Diagnostics",
+      "Wiring Repair",
+      "Headlight Replacement",
+      "Headlight Alignment",
+      "Tail-Light Replacement",
+      "Horn Repair",
+      "Power-Window Repair",
+      "Central Locking Repair"
+     ]
+    },
+    {
+     "name": "Accessories & installations",
+     "services": [
+      "Infotainment Installation",
+      "Reverse-Camera Installation",
+      "Parking Sensor Installation",
+      "Dashcam Installation",
+      "Seat-Cover Installation",
+      "Floor-Mat Installation",
+      "Speaker Installation",
+      "Amplifier Installation",
+      "Subwoofer Installation",
+      "Android Head-Unit Installation",
+      "GPS Tracker Installation",
+      "Ambient Lighting Installation",
+      "Roof-Rack Installation",
+      "Body-Kit Installation",
+      "Spoiler Installation",
+      "Car Accessory Installation"
+     ]
+    },
+    {
+     "name": "Inspections & diagnostics",
+     "services": [
+      "Pre-Purchase Vehicle Inspection",
+      "Used-Car Inspection",
+      "Pre-Trip Vehicle Inspection",
+      "General Vehicle Inspection",
+      "OBD Diagnostics",
+      "Warning-Light Diagnosis",
+      "Emissions Test",
+      "Accident Damage Assessment",
+      "Insurance Claim Inspection",
+      "Vehicle Valuation"
+     ]
+    },
+    {
+     "name": "Two-wheeler service",
+     "services": [
+      "Bike General Service",
+      "Bike Engine Oil Change",
+      "Bike Chain Cleaning",
+      "Bike Chain Lubrication",
+      "Bike Chain Adjustment",
+      "Bike Brake-Pad Replacement",
+      "Bike Tyre Replacement",
+      "Bike Puncture Repair",
+      "Bike Battery Replacement",
+      "Bike Engine Diagnostics",
+      "Bike Clutch Adjustment",
+      "Bike Suspension Service",
+      "Bike Fork Oil Replacement",
+      "Bike Electrical Repair",
+      "Bike Accessory Installation",
+      "Bike Ceramic Coating"
+     ]
+    },
+    {
+     "name": "EV service",
+     "services": [
+      "EV Health Inspection",
+      "EV Battery Diagnostics",
+      "EV Charging-System Diagnostics",
+      "EV Charging-Port Inspection",
+      "EV Software Diagnostics",
+      "EV General Maintenance",
+      "Home EV Charger Installation Assessment"
+     ]
+    }
+   ],
+   "openGroups": {
+    "Car Detailing": [
+     "Washing & cleaning",
+     "Detailing & paint correction",
+     "Coatings, PPF & wraps"
+    ],
+    "Car Service": [
+     "Oil, fluids & filters",
+     "Servicing & engine",
+     "Brakes, tyres & suspension"
+    ]
+   }
+  },
+  {
+   "name": "Healthcare",
+   "icon": "✚",
+   "types": [
+    "Dental Clinic"
+   ],
+   "groups": [
+    {
+     "name": "General medicine",
+     "services": [
+      "General Physician Consultation",
+      "Family Doctor Consultation",
+      "Initial Medical Consultation",
+      "Follow-Up Consultation",
+      "Teleconsultation",
+      "Home Consultation",
+      "Preventive Health Consultation",
+      "Chronic Condition Follow-Up",
+      "Second Opinion Consultation",
+      "Vaccination Appointment",
+      "Health Check-Up",
+      "Medical Certificate Consultation"
+     ]
+    },
+    {
+     "name": "Dental",
+     "services": [
+      "Dental Consultation",
+      "Dental Follow-Up",
+      "Dental Cleaning",
+      "Dental Scaling",
+      "Dental Polishing",
+      "Dental X-Ray",
+      "Cavity Assessment",
+      "Dental Filling",
+      "Tooth Extraction",
+      "Wisdom Tooth Consultation",
+      "Root Canal Treatment",
+      "Dental Crown Fitting",
+      "Dental Bridge Consultation",
+      "Dental Implant Consultation",
+      "Denture Fitting",
+      "Teeth Whitening",
+      "Braces Consultation",
+      "Orthodontic Adjustment",
+      "Clear Aligner Consultation",
+      "Gum Treatment",
+      "Pediatric Dental Consultation",
+      "Emergency Dental Assessment"
+     ]
+    },
+    {
+     "name": "Dermatology",
+     "services": [
+      "Dermatology Consultation",
+      "Acne Consultation",
+      "Pigmentation Consultation",
+      "Eczema Consultation",
+      "Hair-Loss Consultation",
+      "Scalp Condition Consultation",
+      "Mole Assessment",
+      "Skin Allergy Assessment",
+      "Skin Biopsy Appointment",
+      "Wart Removal Consultation",
+      "Chemical Peel Appointment",
+      "Laser Treatment Consultation",
+      "Scar Treatment Consultation",
+      "Skin Follow-Up"
+     ]
+    },
+    {
+     "name": "Physiotherapy",
+     "services": [
+      "Initial Physiotherapy Assessment",
+      "Follow-Up Physiotherapy",
+      "Sports Injury Rehabilitation",
+      "Back-Pain Rehabilitation",
+      "Neck-Pain Rehabilitation",
+      "Knee Rehabilitation",
+      "Shoulder Rehabilitation",
+      "Post-Operative Rehabilitation",
+      "Mobility Assessment",
+      "Gait Assessment",
+      "Strength and Conditioning Rehabilitation",
+      "Posture Assessment",
+      "Neurological Rehabilitation",
+      "Stroke Rehabilitation",
+      "Pediatric Physiotherapy",
+      "Women's Health Physiotherapy",
+      "Pelvic-Floor Physiotherapy",
+      "Home Physiotherapy",
+      "Ergonomic Assessment"
+     ]
+    },
+    {
+     "name": "Eye care",
+     "services": [
+      "Eye Examination",
+      "Vision Test",
+      "Refraction Test",
+      "Contact Lens Fitting",
+      "Contact Lens Follow-Up",
+      "Eye-Pressure Screening",
+      "Diabetic Eye Screening",
+      "Dry-Eye Assessment",
+      "Pediatric Eye Examination",
+      "Ophthalmologist Consultation",
+      "Cataract Consultation",
+      "Spectacle Fitting",
+      "Frame Selection"
+     ]
+    },
+    {
+     "name": "Women's health",
+     "services": [
+      "Gynecologist Consultation",
+      "Women's Health Consultation",
+      "Menstrual Health Consultation",
+      "PCOS Consultation",
+      "Pregnancy Consultation",
+      "Antenatal Check-Up",
+      "Postnatal Follow-Up",
+      "Breastfeeding Consultation",
+      "Fertility Consultation",
+      "Menopause Consultation",
+      "Family-Planning Consultation",
+      "Prenatal Class",
+      "Pelvic Health Consultation"
+     ]
+    },
+    {
+     "name": "Child health",
+     "services": [
+      "Pediatric Consultation",
+      "Newborn Follow-Up",
+      "Growth and Development Assessment",
+      "Child Vaccination",
+      "Feeding Consultation",
+      "Developmental Assessment"
+     ]
+    },
+    {
+     "name": "Lab tests & scans",
+     "services": [
+      "Blood Sample Collection",
+      "Complete Blood Count",
+      "Blood Glucose Testing",
+      "HbA1c Testing",
+      "Lipid Profile Testing",
+      "Thyroid Testing",
+      "Vitamin Testing",
+      "Urine Testing",
+      "Health Package Booking",
+      "ECG Appointment",
+      "Ultrasound Appointment",
+      "X-Ray Appointment",
+      "MRI Appointment",
+      "CT Scan Appointment",
+      "Home Sample Collection"
+     ]
+    },
+    {
+     "name": "Mental health",
+     "services": [
+      "Psychologist Consultation",
+      "Follow-Up Therapy Session",
+      "Individual Counselling",
+      "Couples Counselling",
+      "Family Counselling",
+      "Child and Adolescent Counselling",
+      "Stress-Management Session",
+      "Behavioural Consultation",
+      "Psychiatrist Consultation",
+      "Medication Follow-Up",
+      "Online Counselling"
+     ]
+    },
+    {
+     "name": "Specialist consultations",
+     "services": [
+      "ENT Consultation",
+      "Hearing Assessment",
+      "Ear Examination",
+      "Sinus Consultation",
+      "Throat Consultation",
+      "Orthopedic Consultation",
+      "Joint Assessment",
+      "Fracture Follow-Up",
+      "Sports Injury Assessment",
+      "Cardiology Consultation",
+      "Cardiac Follow-Up",
+      "Nutrition Consultation",
+      "Dietitian Consultation",
+      "Nutrition Assessment",
+      "Diet-Plan Follow-Up",
+      "Urology Consultation",
+      "Gastroenterology Consultation",
+      "Digestive Health Follow-Up",
+      "Pulmonology Consultation",
+      "Respiratory Consultation",
+      "Lung-Function Testing"
+     ]
+    },
+    {
+     "name": "Veterinary",
+     "services": [
+      "Veterinary Consultation",
+      "Pet Vaccination",
+      "Pet Wellness Check",
+      "Veterinary Follow-Up",
+      "Pet Dental Consultation"
+     ]
+    },
+    {
+     "name": "Home care",
+     "services": [
+      "Home Nursing Visit",
+      "Wound Dressing",
+      "Post-Operative Home Care Assessment",
+      "Elderly Care Assessment"
+     ]
+    }
+   ],
+   "openGroups": {
+    "Dental Clinic": [
+     "Dental"
+    ]
+   }
+  },
+  {
+   "name": "Photography",
+   "icon": "📷",
+   "types": [
+    "Photography Studio"
+   ],
+   "groups": [
+    {
+     "name": "Portraits & personal",
+     "services": [
+      "Individual Portrait Photoshoot",
+      "Professional Headshots",
+      "Corporate Headshots",
+      "LinkedIn Profile Photoshoot",
+      "Actor Portfolio Photoshoot",
+      "Model Portfolio Photoshoot",
+      "Fashion Portfolio Photoshoot",
+      "Personal Branding Photoshoot",
+      "Graduation Photoshoot",
+      "Birthday Photoshoot",
+      "Couple Photoshoot",
+      "Family Photoshoot",
+      "Maternity Photoshoot",
+      "Newborn Photoshoot",
+      "Baby Milestone Photoshoot",
+      "Kids' Photoshoot",
+      "Pet Photoshoot",
+      "Outdoor Portrait Photoshoot",
+      "Studio Portrait Photoshoot"
+     ]
+    },
+    {
+     "name": "Weddings",
+     "services": [
+      "Pre-Wedding Photoshoot",
+      "Engagement Photography",
+      "Engagement Videography",
+      "Wedding Photography",
+      "Wedding Videography",
+      "Candid Wedding Photography",
+      "Traditional Wedding Photography",
+      "Wedding Cinematography",
+      "Bridal Portrait Photoshoot",
+      "Groom Portrait Photoshoot",
+      "Haldi Ceremony Photography",
+      "Mehendi Ceremony Photography",
+      "Sangeet Photography",
+      "Reception Photography",
+      "Wedding Album Consultation",
+      "Wedding Teaser Video",
+      "Wedding Highlight Film",
+      "Full-Length Wedding Film",
+      "Drone Photography",
+      "Destination Wedding Photography"
+     ]
+    },
+    {
+     "name": "Events & celebrations",
+     "services": [
+      "Anniversary Photoshoot",
+      "Birthday Event Photography",
+      "Birthday Event Videography",
+      "Baby Shower Photography",
+      "Naming Ceremony Photography",
+      "Housewarming Photography",
+      "Graduation Event Photography",
+      "Corporate Event Photography",
+      "Corporate Event Videography",
+      "Conference Photography",
+      "Seminar Photography",
+      "Product Launch Photography",
+      "Award Ceremony Photography",
+      "Concert Photography",
+      "Stage Performance Photography",
+      "Religious Event Photography",
+      "School Event Photography",
+      "Sports Event Photography",
+      "Exhibition Photography",
+      "Private Party Photography"
+     ]
+    },
+    {
+     "name": "Product & commercial",
+     "services": [
+      "Product Photoshoot",
+      "E-Commerce Product Photography",
+      "Catalogue Photography",
+      "Jewellery Photography",
+      "Food Photography",
+      "Restaurant Menu Photography",
+      "Fashion Photography",
+      "Apparel Photography",
+      "Beauty Product Photography",
+      "Cosmetics Photography",
+      "Furniture Photography",
+      "Electronics Photography",
+      "Industrial Photography",
+      "Packaging Photography",
+      "Advertising Photography",
+      "Brand Campaign Photoshoot",
+      "Lifestyle Product Photoshoot",
+      "White-Background Product Photography",
+      "360-Degree Product Photography",
+      "Product Video Shoot"
+     ]
+    },
+    {
+     "name": "Real estate & interiors",
+     "services": [
+      "Property Photography",
+      "Apartment Photography",
+      "Villa Photography",
+      "Interior Photography",
+      "Architectural Photography",
+      "Commercial Property Photography",
+      "Hotel Photography",
+      "Resort Photography",
+      "Holiday Rental Photography",
+      "Construction Progress Photography",
+      "Real Estate Videography",
+      "Property Walkthrough Video",
+      "Aerial Property Photography",
+      "Interior Design Portfolio Photoshoot"
+     ]
+    },
+    {
+     "name": "Fashion & portfolios",
+     "services": [
+      "Fashion Editorial Photoshoot",
+      "Model Test Shoot",
+      "Designer Portfolio Photoshoot",
+      "Lookbook Photography",
+      "Clothing Catalogue Photoshoot",
+      "Makeup Portfolio Photoshoot",
+      "Hairstylist Portfolio Photoshoot",
+      "Salon Portfolio Photoshoot",
+      "Nail-Art Portfolio Photoshoot",
+      "Bridal Portfolio Photoshoot",
+      "Influencer Content Photoshoot",
+      "Personal Brand Photoshoot",
+      "Fashion Campaign Video"
+     ]
+    },
+    {
+     "name": "Corporate",
+     "services": [
+      "Executive Portraits",
+      "Employee Headshots",
+      "Team Photoshoot",
+      "Office Photography",
+      "Company Profile Photoshoot",
+      "Annual Report Photography",
+      "Corporate Video Production",
+      "Interview Filming",
+      "Training Video Recording",
+      "Testimonial Video Recording",
+      "Recruitment Campaign Photoshoot"
+     ]
+    },
+    {
+     "name": "Video production",
+     "services": [
+      "Brand Storytelling Video",
+      "Promotional Video Production",
+      "Brand Film Production",
+      "Interview Recording",
+      "Podcast Video Recording",
+      "YouTube Video Shoot",
+      "Social Media Reel Shoot",
+      "Instagram Content Shoot",
+      "Short-Form Video Package",
+      "Music Video Production",
+      "Documentary Filming",
+      "Event Highlight Video",
+      "Product Demonstration Video",
+      "Tutorial Video Recording",
+      "Green-Screen Recording",
+      "Livestream Production",
+      "Video Editing"
+     ]
+    },
+    {
+     "name": "Studio & equipment rental",
+     "services": [
+      "Photography Studio Rental",
+      "Portrait Studio Rental",
+      "Product Photography Studio Rental",
+      "Video Studio Rental",
+      "Podcast Studio Rental",
+      "Recording Room Rental",
+      "Green-Screen Studio Rental",
+      "Cyclorama Studio Rental",
+      "Meeting Room Rental",
+      "Camera Rental",
+      "Lens Rental",
+      "Lighting Equipment Rental",
+      "Tripod Rental",
+      "Audio Equipment Rental",
+      "Teleprompter Rental",
+      "Studio Assistant Booking",
+      "Lighting Technician Booking"
+     ]
+    },
+    {
+     "name": "Editing, printing & ID photos",
+     "services": [
+      "Photo Editing",
+      "Photo Retouching",
+      "Skin Retouching",
+      "Background Removal",
+      "Colour Correction",
+      "Photo Restoration",
+      "Album Design",
+      "Wedding Album Printing",
+      "Photo Printing",
+      "Canvas Printing",
+      "Framed Photo Printing",
+      "Passport Photo Service",
+      "ID Photo Service",
+      "Image Digitisation",
+      "Video Digitisation",
+      "Video Colour Grading",
+      "Reel Editing",
+      "Slideshow Creation"
+     ]
+    }
+   ],
+   "openGroups": {
+    "Photography Studio": [
+     "Portraits & personal",
+     "Studio & equipment rental"
+    ]
+   }
+  }
+ ]
+}
