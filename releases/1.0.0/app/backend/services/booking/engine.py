@@ -226,8 +226,9 @@ class NewBooking:
     email: str
     phone: str
     note: str = ""
-    source: str = "online"
+    source: str = "online"            # online (booking page) | ai (MCP / AI assistant) | manual (owner)
     status: str | None = None          # manual bookings may choose
+    override: bool = False             # owner confirmed booking a staff member who is off that day
 
 
 def _new_code(db: Session) -> str:
@@ -284,21 +285,30 @@ def create_booking(db: Session, biz: Business, nb: NewBooking, now: datetime) ->
     with _business_lock(biz.id):
         _lock_business_row(db, biz.id)
         expire_holds(db, biz.id, now)
-        if nb.source == "online":
+        if nb.source != "manual":
             _check_booking_rate(db, biz, email, phone, now)
             check_date(db, biz, nb.date, now)
         services = bookable_services(db, biz, nb.service_ids, nb.date)
         _validate_staff_choice(db, biz, nb.staff)
         day = build_day(db, biz, services, nb.date, now)
         staff_choice = nb.staff if nb.staff == "any" else int(nb.staff)
-        if nb.source == "online":
+        if nb.source != "manual":
             free = {s["time"] for s in compute_slots(day, staff_choice)}
             if nb.time not in free:
                 raise conflict("That time was just taken or isn't available. Please choose another slot.",
                                code="slot_taken")
             staff_id = pick_staff(day, start_min, staff_choice)
         else:
-            # Owner's manual booking: assign a free staff member if possible, otherwise keep the choice.
+            # Owner's manual booking. RR's rule: if the chosen staff member isn't working that day
+            # (working weekday, leave, suspension), WARN first; the owner may confirm and override.
+            # Clock time and overlaps are not checked here, so owners can squeeze in walk-ins.
+            if staff_choice != "any" and not nb.override:
+                chosen = next((st for st in day.staff if st.id == int(staff_choice)), None)
+                if chosen is None or not chosen.available_today:
+                    name = chosen.name if chosen else "This staff member"
+                    raise conflict(f"Staff member unavailable that day: {name} isn't working on "
+                                   f"{nb.date.strftime('%a %d %b')} (day off, leave or suspended).",
+                                   code="staff_unavailable_day")
             staff_id = pick_staff(day, start_min, staff_choice) if day.staff else None
             if staff_id == -1:
                 staff_id = None if staff_choice == "any" else int(staff_choice)
@@ -333,6 +343,23 @@ def create_booking(db: Session, biz: Business, nb: NewBooking, now: datetime) ->
         db.flush()
     log.info("booking created business=%s booking=%s status=%s customer=%s", biz.id, b.code, status, mask_email(email))
     return b, token
+
+
+def after_create(db: Session, biz: Business, b: Booking, token: str, now: datetime) -> dict | None:
+    """
+    Shared by the booking page and the MCP: a deposit booking gets a payment
+    order; anything else is confirmed now, so the owner is notified (bell +
+    email) and the customer gets the confirmation email with the manage link.
+    """
+    if b.status == "awaiting_payment":
+        return deposit_order(db, biz, b, now)
+    from services.notifications.service import booking_line, notify
+
+    c = db.get(Customer, b.customer_id)
+    title = "New booking (AI assistant)" if b.source == "ai" else "New booking"
+    notify(db, biz, "Booking", title, booking_line(b, c.name, b.items), email_owner=True)
+    send_confirmation(db, biz, b, token)
+    return None
 
 
 def manage_token(b: Booking) -> str:

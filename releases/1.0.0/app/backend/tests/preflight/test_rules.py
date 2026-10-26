@@ -94,3 +94,9 @@ def test_checkout_signature(monkeypatch):
     assert gateway.verify_checkout_signature("order_1", "pay_1", sig)
     assert not gateway.verify_checkout_signature("order_1", "pay_2", sig)
     config.reset_settings_cache()
+
+
+def test_supabase_key_headers():
+    from services.storage.logos import supabase_headers
+    assert supabase_headers("sb_secret_abc") == {"apikey": "sb_secret_abc"}
+    assert supabase_headers("eyJlegacy") == {"apikey": "eyJlegacy", "Authorization": "Bearer eyJlegacy"}

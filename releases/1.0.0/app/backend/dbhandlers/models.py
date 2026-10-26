@@ -81,6 +81,9 @@ class Business(Base):
     business_type: Mapped[str] = mapped_column(String(60), default="")
     address: Mapped[str] = mapped_column(String(255), default="")
     city: Mapped[str] = mapped_column(String(80), default="")
+    # Up to N (pricing.json limits.search_areas) localities: areas[0] = where the business is,
+    # the rest = nearby areas the owner wants to appear in for "near me in <area>" searches.
+    areas: Mapped[list] = mapped_column(JSON, default=list)
     phone: Mapped[str] = mapped_column(String(32), default="")
     whatsapp: Mapped[str] = mapped_column(String(32), default="")
     working_days: Mapped[list] = mapped_column(JSON, default=list)   # ["Mon", ...]

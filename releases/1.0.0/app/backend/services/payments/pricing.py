@@ -57,7 +57,8 @@ def quote(db: Session, owner_user_id: int, plan: str, billing: str) -> Quote:
 
 def public_table(first_time_top: bool = True) -> dict:
     cfg = config()
-    out = {"offer_label": cfg.get("offer_label", ""), "currency": cfg.get("currency", "INR"), "plans": {}}
+    out = {"offer_label": cfg.get("offer_label", ""), "currency": cfg.get("currency", "INR"), "plans": {},
+           "search_areas_limit": int(cfg.get("limits", {}).get("search_areas", 3))}
     for plan in PLANS:
         out["plans"][plan] = {}
         for billing in BILLINGS:

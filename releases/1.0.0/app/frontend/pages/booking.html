@@ -254,7 +254,7 @@ function setBusiness(b){BUSINESS=b;SERVICES=b.services;STAFF=b.staff;const f=new
  if(location.pathname==="/manage"){document.querySelector(".steps").style.display="none";document.querySelector(".hero").style.display="none";
   const token=params.get("token");if(!token){showPage("recover");return}
   try{const r=await Centra.get("/api/public/manage?token="+encodeURIComponent(token));state.token=token;state.booking=r.booking;setBusiness(r.business);
-   history.replaceState(null,"","/manage?token="+encodeURIComponent(token));renderServices();renderStaff();updateSummary();openManage()}
+   history.replaceState(null,"","/manage?token="+encodeURIComponent(token));renderServices();renderStaff();updateSummary();if(r.booking.status==="awaiting_payment"){state.customer=r.booking.customer||{};showSuccess()}else openManage()}
   catch(e){showPage("recover");$("recover-msg").textContent=e.message+" You can open your booking with your email and booking code."}
   return}
  const slug=location.pathname.split("/").filter(Boolean)[0];

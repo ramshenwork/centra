@@ -149,15 +149,7 @@ def book(slug: str, body: BookIn, request: Request, db: Session = Depends(get_db
     nb = engine.NewBooking(service_ids=body.services, staff=body.staff, date=body.date, time=body.time,
                            name=body.name, email=body.email, phone=body.phone, note=body.note)
     b, token = engine.create_booking(db, biz, nb, now)
-    payment = None
-    if b.status == "awaiting_payment":
-        payment = engine.deposit_order(db, biz, b, now)
-    else:
-        from services.notifications.service import booking_line, notify
-
-        c = db.get(Customer, b.customer_id)
-        notify(db, biz, "Booking", "New booking", booking_line(b, c.name, b.items), email_owner=True)
-        engine.send_confirmation(db, biz, b, token)
+    payment = engine.after_create(db, biz, b, token, now)
     db.commit()
     s = get_settings()
     return {"ok": True, "booking": engine.booking_public_view(db, biz, b), "token": token,

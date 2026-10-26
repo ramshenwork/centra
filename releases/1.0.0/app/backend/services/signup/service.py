@@ -29,6 +29,7 @@ from sqlalchemy.orm import Session
 from app_platform.config import load_json_config
 from app_platform.errors import bad_request, conflict
 from app_platform.timeutil import WEEKDAYS, is_valid_hhmm, to_minutes
+from services.business.areas import clean_areas
 from dbhandlers.models import Business, Service, Staff
 
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -126,6 +127,7 @@ def validate_wizard(db: Session, biz: Business, state: dict) -> dict:
     if not phone:
         raise bad_request("Enter the business phone number.")
     slug = check_slug(db, b.get("slug", ""), biz.id)
+    areas = clean_areas(b.get("areas"))
     open_, close = _hours(b.get("open", ""), b.get("close", ""), "your business")
     days = _days(b.get("days"), "your business")
 
@@ -170,7 +172,7 @@ def validate_wizard(db: Session, biz: Business, state: dict) -> dict:
     return {
         "business": {
             "name": name[:120], "slug": slug, "category": types[btype]["name"], "business_type": btype,
-            "address": (b.get("address") or "").strip()[:255], "city": city[:80], "phone": phone[:32],
+            "address": (b.get("address") or "").strip()[:255], "city": city[:80], "phone": phone[:32], "areas": areas,
             "whatsapp": (b.get("whatsapp") or "").strip()[:32], "working_days": days,
             "open_time": open_, "close_time": close, "show_pricing": show_pricing, "default_interval": interval,
         },

@@ -9,6 +9,11 @@ STORAGE_BACKEND=local     saves under shared/data/uploads/logos (served at /uplo
                           wiped on each deploy, so use supabase there.
 STORAGE_BACKEND=supabase  uploads to the Supabase Storage bucket
                           SUPABASE_BUCKET (create it as a PUBLIC bucket).
+
+SUPABASE_SERVICE_KEY can be either kind of Supabase key:
+- new secret key "sb_secret_...": sent ONLY in the apikey header. Supabase
+  rejects it with "Invalid JWT" if it is also sent as Authorization: Bearer.
+- legacy service_role key "eyJ...": sent in both apikey and Authorization.
 """
 from __future__ import annotations
 
@@ -34,6 +39,13 @@ def validate_png(data: bytes) -> None:
         raise bad_request("PNG files only.")
 
 
+def supabase_headers(key: str) -> dict:
+    headers = {"apikey": key}
+    if not key.startswith("sb_"):
+        headers["Authorization"] = f"Bearer {key}"  # legacy JWT keys only
+    return headers
+
+
 def save_logo(business_id: int, data: bytes) -> str:
     validate_png(data)
     s = get_settings()
@@ -44,8 +56,7 @@ def save_logo(business_id: int, data: bytes) -> str:
         url = f"{s.supabase_url}/storage/v1/object/{s.supabase_bucket}/logos/{name}"
         try:
             r = httpx.post(url, content=data, timeout=20, headers={
-                "Authorization": f"Bearer {s.supabase_service_key}",
-                "apikey": s.supabase_service_key,
+                **supabase_headers(s.supabase_service_key),
                 "Content-Type": "image/png", "x-upsert": "true",
             })
         except httpx.HTTPError as exc:

@@ -123,3 +123,27 @@ def test_fixed_test_otp_code(app_client, monkeypatch):
                                           "confirm": "Passw0rd!", "terms": True})
     assert r.status_code == 200
     assert c.post("/api/signup/verify", json={"email": "fixed@x.com", "code": "454545"}).status_code == 200
+
+
+def test_manual_booking_warns_on_staff_day_off_or_leave(app_client):
+    from datetime import timedelta
+    c = app_client
+    staff = [{"name": "Ravi", "role": "", "days": ["Mon", "Tue", "Thu", "Fri", "Sat", "Sun"],
+              "start": "09:00", "end": "19:00", "break": "none", "interval": "30"}]
+    signup_business(c, "off@x.com", "off-shop", staff=staff)
+    biz = c.get("/api/public/businesses/off-shop").json()
+    sid = biz["services"][0]["id"]
+    ravi = [s for s in biz["staff"] if s["name"] == "Ravi"][0]["id"]
+    wed = future_date(1)
+    while wed.weekday() != 2:
+        wed += timedelta(days=1)
+    body = {"customer": "B", "phone": "9876543211", "service_ids": [sid], "staff": str(ravi), "time": "10:00"}
+    r = c.post("/api/dashboard/appointments", json={**body, "date": wed.isoformat()})
+    assert r.status_code == 409 and "Staff member unavailable that day" in r.json()["error"]["message"]
+    r = c.post("/api/dashboard/appointments", json={**body, "date": wed.isoformat(), "override": True})
+    assert r.status_code == 200  # owner confirmed the warning
+    thu = (wed + timedelta(days=1)).isoformat()
+    assert c.post("/api/dashboard/appointments", json={**body, "date": thu}).status_code == 200
+    fri = (wed + timedelta(days=2)).isoformat()
+    c.post(f"/api/dashboard/staff/{ravi}/leave", json={"date": fri, "reason": "holiday"})
+    assert c.post("/api/dashboard/appointments", json={**body, "date": fri}).status_code == 409

@@ -50,10 +50,11 @@ def last_code(email: str) -> str:
     raise AssertionError(f"no code emailed to {email}")
 
 
-def wizard_state(slug: str, plan: str = "Base", meta: str = "", staff: list | None = None) -> dict:
+def wizard_state(slug: str, plan: str = "Base", meta: str = "", staff: list | None = None,
+                 name: str = "Test Salon", areas: list | None = None) -> dict:
     return {
-        "business": {"category": "Beauty & Wellness", "type": "Salon", "name": "Test Salon", "slug": slug,
-                     "address": "1 Road", "city": "Hyderabad", "phone": "+91 9876543210", "whatsapp": "",
+        "business": {"category": "Beauty & Wellness", "type": "Salon", "name": name, "slug": slug,
+                     "address": "1 Road", "city": "Hyderabad", "areas": areas or ["Madhapur"], "phone": "+91 9876543210", "whatsapp": "",
                      "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], "open": "09:00", "close": "19:00"},
         "services": {"selected": ["Hair Trimming", "Manicure"], "showAll": False,
                      "showPricing": True, "prices": {"Hair Trimming": "500", "Manicure": "800"}, "custom": [],
@@ -63,7 +64,7 @@ def wizard_state(slug: str, plan: str = "Base", meta: str = "", staff: list | No
     }
 
 
-def signup_business(client, email: str, slug: str, **kw) -> None:
+def signup_business(client, email: str, slug: str, **kw) -> None:  # kw -> wizard_state
     r = client.post("/api/signup/start", json={"name": "Owner", "email": email, "phone": "",
                                                "password": "Passw0rd!", "confirm": "Passw0rd!", "terms": True})
     assert r.status_code == 200, r.text

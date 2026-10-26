@@ -20,6 +20,7 @@ from dbhandlers.models import (
 )
 from services.booking.engine import DEPOSIT_LABELS, STATUS_LABELS, expire_holds, today_local
 from services.business.closures import festivals, missing_festival_years
+from services.business.areas import areas_limit
 from services.reports.service import payments_summary, reports
 
 
@@ -117,12 +118,13 @@ def build_state(db: Session, biz: Business, now: datetime) -> dict:
     return {
         "business": {
             "id": biz.id, "name": biz.name, "city": biz.city, "address": biz.address, "phone": biz.phone,
-            "whatsapp": biz.whatsapp, "slug": biz.slug or "", "days": biz.working_days or [],
+            "whatsapp": biz.whatsapp, "slug": biz.slug or "", "areas": biz.areas or [], "days": biz.working_days or [],
             "open": biz.open_time, "close": biz.close_time, "showPricing": biz.show_pricing,
             "allowMultiple": biz.allow_multiple, "logo": biz.logo_url, "type": biz.business_type,
             "category": biz.category,
         },
         "bookingUrl": f"{s.base_url}/{biz.slug}", "domainLabel": s.public_domain_label,
+        "areasLimit": areas_limit(),
         "today": today.isoformat(),
         "services": [{
             "id": x.id, "name": x.name, "price": x.price_paise / 100, "duration": x.duration_min,

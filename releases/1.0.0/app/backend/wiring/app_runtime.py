@@ -11,6 +11,8 @@ ALTER TABLE on Supabase before activating the new release.
 """
 from __future__ import annotations
 
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
@@ -36,8 +38,20 @@ def create_app(database_url: str | None = None) -> FastAPI:
     init_engine(database_url)
     create_all()
 
+    # MCP server for AI assistants (services/mcp). Its session manager must run for the app's lifetime.
+    from services.mcp.server import build_server, transport_security
+
+    mcp = build_server()
+    mcp_http = mcp.streamable_http_app(streamable_http_path="/mcp", stateless_http=True, json_response=True,
+                                       transport_security=transport_security())
+
+    @asynccontextmanager
+    async def lifespan(_app):
+        async with mcp.session_manager.run():
+            yield
+
     app = FastAPI(title="CENTRA", version="1.0.0", docs_url=None if s.is_production else "/api/docs",
-                  redoc_url=None, openapi_url=None if s.is_production else "/api/openapi.json")
+                  redoc_url=None, openapi_url=None if s.is_production else "/api/openapi.json", lifespan=lifespan)
     app.add_middleware(SecurityMiddleware)
 
     @app.exception_handler(AppError)
@@ -76,6 +90,7 @@ def create_app(database_url: str | None = None) -> FastAPI:
     uploads = DATA_DIR / "uploads"
     uploads.mkdir(parents=True, exist_ok=True)
     app.mount("/uploads", StaticFiles(directory=uploads), name="uploads")
+    app.router.routes.extend(mcp_http.routes)  # POST /mcp (must come before the /{slug} catch-all)
     app.include_router(pages_router)  # last: it owns the catch-all /{slug}
     if s.test_otp_code:
         log.warning("TESTING MODE: TEST_OTP_CODE is set. Every OTP is the fixed test code. "

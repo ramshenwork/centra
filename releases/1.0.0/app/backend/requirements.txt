@@ -6,4 +6,5 @@ httpx==0.28.1
 python-multipart
 psycopg[binary]==3.3.6
 tzdata
+mcp==2.3.0
 pytest

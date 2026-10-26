@@ -27,6 +27,7 @@ from dbhandlers.models import (
 from services.auth.sessions import current_user
 from services.booking import engine
 from services.business.access import Ctx, business_for_user, owned, owner_ctx
+from services.business.areas import areas_limit, clean_areas
 from services.business.closures import festivals
 from services.business.state import build_state
 from services.notifications.service import notify
@@ -49,6 +50,7 @@ class ProfileIn(BaseModel):
     open: str
     close: str
     days: list[str]
+    areas: list[str] | None = None
 
 
 class SettingsIn(BaseModel):
@@ -111,6 +113,7 @@ class ManualIn(BaseModel):
     time: str
     status: str = "confirmed"
     note: str = ""
+    override: bool = False
 
 
 class StatusIn(BaseModel):
@@ -155,6 +158,8 @@ def save_profile(body: ProfileIn, ctx: Ctx = Depends(owner_ctx)):
     if not days:
         raise bad_request("Choose at least one working day.")
     biz.slug = check_slug(ctx.db, body.slug, biz.id)
+    if body.areas is not None:
+        biz.areas = clean_areas(body.areas)
     biz.name, biz.city, biz.address, biz.phone = name[:120], city[:80], body.address.strip()[:255], body.phone.strip()[:32]
     if body.whatsapp is not None:
         biz.whatsapp = body.whatsapp.strip()[:32]
@@ -420,7 +425,8 @@ def manual_booking(body: ManualIn, ctx: Ctx = Depends(owner_ctx)):
     email = body.email.strip() or f"walkin-{''.join(c for c in body.phone if c.isdigit())}@no-email.centra"
     nb = engine.NewBooking(service_ids=body.service_ids, staff=body.staff, date=body.date, time=body.time,
                            name=body.customer, email=email, phone=body.phone, note=body.note, source="manual",
-                           status=body.status if body.status in ("confirmed", "requested", "awaiting_payment") else "confirmed")
+                           status=body.status if body.status in ("confirmed", "requested", "awaiting_payment") else "confirmed",
+                           override=body.override)
     b, _ = engine.create_booking(ctx.db, ctx.business, nb, utcnow())
     notify(ctx.db, ctx.business, "Booking", "Manual booking created", f"{body.customer} · {b.code}")
     ctx.db.commit()
@@ -531,6 +537,11 @@ def renew(body: RenewIn, ctx: Ctx = Depends(owner_ctx)):
     order = create_subscription_order(ctx.db, ctx.business, ctx.user.id, q, utcnow())
     ctx.db.commit()
     return {"ok": True, "order": order}
+
+
+@router.get("/areas-limit")
+def get_areas_limit(ctx: Ctx = Depends(owner_ctx)):
+    return {"limit": areas_limit()}
 
 
 @router.get("/pricing")
