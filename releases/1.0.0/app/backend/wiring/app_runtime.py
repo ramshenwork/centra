@@ -36,7 +36,9 @@ def create_app(database_url: str | None = None) -> FastAPI:
     setup_logging()
     s = get_settings()
     init_engine(database_url)
-    create_all()
+    added = create_all()
+    if added:
+        log.info("database columns added: %s", ", ".join(added))
 
     # MCP server for AI assistants (services/mcp). Its session manager must run for the app's lifetime.
     from services.mcp.server import build_server, transport_security

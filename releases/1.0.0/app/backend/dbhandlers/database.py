@@ -77,11 +77,35 @@ def get_engine() -> Engine:
     return _engine  # type: ignore[return-value]
 
 
-def create_all() -> None:
+# Columns added after a table already existed (e.g. in Supabase). create_all() only creates
+# missing TABLES, never missing columns, so each new column is added here once. Safe to run on
+# every start: a column that already exists is skipped.
+ADDED_COLUMNS = [
+    ("businesses", "areas", {"postgresql": "JSON NOT NULL DEFAULT '[]'::json", "sqlite": "JSON NOT NULL DEFAULT '[]'"}),
+]
+
+
+def ensure_columns() -> list[str]:
+    from sqlalchemy import inspect, text
+
+    engine = get_engine()
+    insp = inspect(engine)
+    tables = set(insp.get_table_names())
+    added = []
+    with engine.begin() as conn:
+        for table, column, ddl in ADDED_COLUMNS:
+            if table in tables and column not in {c["name"] for c in insp.get_columns(table)}:
+                conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {column} {ddl[engine.dialect.name]}"))
+                added.append(f"{table}.{column}")
+    return added
+
+
+def create_all() -> list[str]:
     from dbhandlers import models  # noqa: F401  (importing registers the tables)
     _ = models
 
     Base.metadata.create_all(get_engine())
+    return ensure_columns()
 
 
 def session_factory() -> sessionmaker:
