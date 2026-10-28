@@ -25,7 +25,7 @@ from dbhandlers.models import (
     Booking, Closure, Customer, Notification, Service, Staff, StaffLeave,
 )
 from services.auth.sessions import current_user
-from services.booking import engine
+from services.booking import engine, status_change
 from services.business.access import Ctx, business_for_user, owned, owner_ctx
 from services.business.areas import areas_limit, clean_areas
 from services.business.closures import festivals
@@ -433,38 +433,12 @@ def manual_booking(body: ManualIn, ctx: Ctx = Depends(owner_ctx)):
     return {"ok": True, "code": b.code}
 
 
-_OWNER_STATUS = {"confirmed", "completed", "no_show", "cancelled", "rejected"}
-
-
 @router.post("/appointments/{bid}/status")
 def set_status(bid: int, body: StatusIn, ctx: Ctx = Depends(owner_ctx)):
     b = owned(ctx.db, Booking, bid, ctx.business.id)
-    target = body.status
-    now = utcnow()
-    if target not in _OWNER_STATUS:
-        raise bad_request("Choose a valid status.")
-    if target in ("cancelled", "rejected"):
-        result = engine.cancel_booking(ctx.db, ctx.business, b, "owner", now)
-        if target == "rejected" and result["status"] == "cancelled":
-            b.status = "rejected"
-    elif target == "confirmed":
-        if b.status not in ("requested", "awaiting_payment"):
-            raise bad_request("Only requested bookings can be confirmed.")
-        b.status, b.hold_expires_at = "confirmed", None
-        if b.deposit_status == "pending":
-            b.deposit_status = "not_required"
-    elif target == "completed":
-        if b.status not in ("confirmed", "requested"):
-            raise bad_request("Only confirmed bookings can be completed.")
-        b.status = "completed"
-    elif target == "no_show":
-        if b.status not in ("confirmed", "requested"):
-            raise bad_request("Only confirmed bookings can be marked as no-show.")
-        b.status = "no_show"
-        if b.deposit_status == "paid":
-            b.deposit_status = "forfeited"
+    result = status_change.change_status(ctx.db, ctx.business, b, body.status, utcnow())
     ctx.db.commit()
-    return {"ok": True, "status": engine.STATUS_LABELS.get(b.status, b.status)}
+    return {"ok": True, **result}
 
 
 @router.post("/appointments/{bid}/reschedule")

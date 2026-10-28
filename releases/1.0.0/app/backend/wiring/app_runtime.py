@@ -92,6 +92,13 @@ def create_app(database_url: str | None = None) -> FastAPI:
     uploads = DATA_DIR / "uploads"
     uploads.mkdir(parents=True, exist_ok=True)
     app.mount("/uploads", StaticFiles(directory=uploads), name="uploads")
+    @app.api_route("/mcp", methods=["HEAD", "OPTIONS"], include_in_schema=False)
+    async def mcp_probe():
+        """Connector checks (e.g. Claude's) probe /mcp with HEAD first; 405 there reads as 'needs sign-in'."""
+        from fastapi.responses import Response
+
+        return Response(status_code=200, headers={"Allow": "GET, POST, HEAD, OPTIONS"})
+
     app.router.routes.extend(mcp_http.routes)  # POST /mcp (must come before the /{slug} catch-all)
     app.include_router(pages_router)  # last: it owns the catch-all /{slug}
     if s.test_otp_code:

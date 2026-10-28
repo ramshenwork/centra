@@ -128,3 +128,13 @@ def test_areas_required_and_limited(app_client):
     assert c.post("/api/signup/checkout", json={"state": st}).json()["error"]["code"] == "area_required"
     st["business"]["areas"] = ["A1", "A2", "A3", "A4"]
     assert c.post("/api/signup/checkout", json={"state": st}).json()["error"]["code"] == "too_many_areas"
+
+
+def test_mcp_head_probe_is_ok(app_client):
+    """Claude's connector check sends HEAD /mcp first; anything but 2xx looks like 'sign-in required'."""
+    with TestClient(app_client.app) as c:
+        assert c.head("/mcp").status_code == 200
+        assert c.options("/mcp").status_code == 200
+        assert c.get("/.well-known/oauth-protected-resource").status_code == 404  # = no sign-in needed
+        assert rpc(c, "initialize", {"protocolVersion": "2025-06-18", "capabilities": {},
+                                      "clientInfo": {"name": "t", "version": "1"}}).status_code == 200

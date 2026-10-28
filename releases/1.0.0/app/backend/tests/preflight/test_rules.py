@@ -100,3 +100,23 @@ def test_supabase_key_headers():
     from services.storage.logos import supabase_headers
     assert supabase_headers("sb_secret_abc") == {"apikey": "sb_secret_abc"}
     assert supabase_headers("eyJlegacy") == {"apikey": "eyJlegacy", "Authorization": "Bearer eyJlegacy"}
+
+
+def test_new_columns_added_to_an_existing_database(tmp_path, monkeypatch):
+    """An old database (like the live Supabase one) gets new columns on start instead of crashing."""
+    import sqlite3
+    from sqlalchemy import inspect
+    from app_platform import config
+    from dbhandlers import database
+    db_file = tmp_path / "old.db"
+    con = sqlite3.connect(db_file)
+    con.execute("create table businesses (id integer primary key, name text)")
+    con.commit()
+    con.close()
+    monkeypatch.setenv("DATABASE_URL", f"sqlite:///{db_file.as_posix()}")
+    config.reset_settings_cache()
+    database.init_engine()
+    assert database.create_all() == ["businesses.areas"]
+    assert "areas" in [c["name"] for c in inspect(database.get_engine()).get_columns("businesses")]
+    assert database.create_all() == []  # second start: nothing to add
+    config.reset_settings_cache()
