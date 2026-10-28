@@ -120,6 +120,8 @@ def validate_wizard(db: Session, biz: Business, state: dict) -> dict:
     name = (b.get("name") or "").strip()
     if not name:
         raise bad_request("Enter your business name.")
+    if not (b.get("address") or "").strip():
+        raise bad_request("Enter your street address.")
     city = (b.get("city") or "").strip()
     if not city:
         raise bad_request("Enter your city.")

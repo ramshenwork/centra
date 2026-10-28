@@ -28,6 +28,7 @@ from services.auth.sessions import current_user
 from services.booking import engine, status_change
 from services.business.access import Ctx, business_for_user, owned, owner_ctx
 from services.business.areas import areas_limit, clean_areas
+from services.business import customer_lookup
 from services.business.closures import festivals
 from services.business.state import build_state
 from services.notifications.service import notify
@@ -152,6 +153,8 @@ def save_profile(body: ProfileIn, ctx: Ctx = Depends(owner_ctx)):
     name, city = body.name.strip(), body.city.strip()
     if not name or not city:
         raise bad_request("Business name and city are required.")
+    if not body.address.strip():
+        raise bad_request("Enter your street address.")
     if not (is_valid_hhmm(body.open) and is_valid_hhmm(body.close)) or to_minutes(body.open) >= to_minutes(body.close):
         raise bad_request("Closing time must be later than opening time.")
     days = [d for d in body.days if d in WEEKDAYS]
@@ -452,6 +455,16 @@ def reschedule(bid: int, body: RescheduleIn, ctx: Ctx = Depends(owner_ctx)):
 
 
 # ------------------------------------------------------------------ customers & notifications
+@router.get("/customers/lookup")
+def customers_lookup(q: str = "", date_from: str = "", date_to: str = "", ctx: Ctx = Depends(owner_ctx)):
+    return customer_lookup.lookup(ctx.db, ctx.business.id, q, date_from, date_to)
+
+
+@router.get("/customers/history")
+def customers_history(key: str = "", ctx: Ctx = Depends(owner_ctx)):
+    return customer_lookup.history_for(ctx.db, ctx.business.id, key)
+
+
 @router.put("/customers/{cid}/notes")
 def customer_notes(cid: int, body: NotesIn, ctx: Ctx = Depends(owner_ctx)):
     c = owned(ctx.db, Customer, cid, ctx.business.id)
